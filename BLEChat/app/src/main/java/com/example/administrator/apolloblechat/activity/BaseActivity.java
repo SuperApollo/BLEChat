@@ -15,7 +15,7 @@ public class BaseActivity extends FragmentActivity {
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.);
+        setContentView(R.layout.layout_base_activity);
     }
 
 }
