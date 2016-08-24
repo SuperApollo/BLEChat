@@ -13,16 +13,15 @@ import java.util.zip.Inflater;
 /**
  * Created by Administrator on 2016/8/23.
  */
-public class BaseActivity extends FragmentActivity {
+public abstract class BaseActivity extends FragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        View view = View.inflate(getBaseContext(),getContentViewId(),null);
+        setContentView(view);
+    }
 
-        setContentView(R.layout.layout_base_activity);
-    }
-    protected abstract int getContentViewId(View parentView,int viewId){
-        return
-    }
+    protected abstract int getContentViewId();
 
 }
