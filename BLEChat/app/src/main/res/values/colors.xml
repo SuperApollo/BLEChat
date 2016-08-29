@@ -2,4 +2,5 @@
 <resources>
     <color name="commom_title_bg">#1C6ECF</color>
     <color name="white">#ffffff</color>
+    <color name="main_background">#FF3B3C3D</color>
 </resources>

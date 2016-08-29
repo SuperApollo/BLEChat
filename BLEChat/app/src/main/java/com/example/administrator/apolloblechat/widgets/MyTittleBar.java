@@ -18,7 +18,7 @@ import com.example.administrator.apolloblechat.R;
 /**
  * Created by Administrator on 2016/8/29.
  */
-public class TittleBar extends RelativeLayout {
+public class MyTittleBar extends RelativeLayout {
 
     private RelativeLayout backLayout;
     private TextView tvTitle;
@@ -142,15 +142,15 @@ public class TittleBar extends RelativeLayout {
         this.onRightlayoutListener = onRightlayoutListener;
     }
 
-    public TittleBar(Context context) {
+    public MyTittleBar(Context context) {
         this(context, null);
     }
 
-    public TittleBar(Context context, AttributeSet attrs) {
+    public MyTittleBar(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public TittleBar(Context context, AttributeSet attrs, int defStyleAttr) {
+    public MyTittleBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.tittlebar);
         title = typedArray.getString(R.styleable.tittlebar_title);
