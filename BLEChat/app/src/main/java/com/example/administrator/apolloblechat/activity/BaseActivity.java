@@ -14,11 +14,12 @@ import java.util.zip.Inflater;
  * Created by Administrator on 2016/8/23.
  */
 public abstract class BaseActivity extends FragmentActivity {
+
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        View view = View.inflate(getBaseContext(),getContentViewId(),null);
+        View view = getLayoutInflater().inflate(getContentViewId(),null);
         setContentView(view);
     }
 

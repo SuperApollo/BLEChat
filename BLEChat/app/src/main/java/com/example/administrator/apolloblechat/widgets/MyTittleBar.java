@@ -1,11 +1,13 @@
 package com.example.administrator.apolloblechat.widgets;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -165,6 +167,7 @@ public class MyTittleBar extends RelativeLayout {
 
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private void initView(final Context context) {
         View tittleView = LayoutInflater.from(context).inflate(R.layout.title_layout, this, true);
         backLayout = (RelativeLayout) tittleView.findViewById(R.id.title_layout_backlay);
