@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="tittlebar">
+        <attr name="title" format="string" />
+        <attr name="showbacklay" format="boolean" />
+        <attr name="backimg" format="reference" />
+        <attr name="showrightlay" format="boolean" />
+        <attr name="righttext" format="string" />
+        <attr name="righttextbg" format="reference" />
+    </declare-styleable>
+</resources>
