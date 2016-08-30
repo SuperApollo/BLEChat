@@ -4,5 +4,6 @@
     <color name="white">#ffffff</color>
     <color name="main_background">#FF3B3C3D</color>
     <color name="tab_item_background">#8C6A61</color>
-    <color name="tab_item_textcolor">#33475f</color>
+    <color name="tab_item_textcolor_selected">#33475f</color>
+    <color name="tab_item_textcolor_normal">#2B2B2B</color>
 </resources>
