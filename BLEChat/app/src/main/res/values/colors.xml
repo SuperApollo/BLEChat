@@ -3,4 +3,6 @@
     <color name="commom_title_bg">#1C6ECF</color>
     <color name="white">#ffffff</color>
     <color name="main_background">#FF3B3C3D</color>
+    <color name="tab_item_background">#8C6A61</color>
+    <color name="tab_item_textcolor">#33475f</color>
 </resources>

@@ -11,12 +11,36 @@
         android:layout_weight="1"
         android:orientation="vertical" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/main_background" />
+
     <RadioGroup
         android:id="@+id/rg_bottom"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="56dp"
         android:layout_alignParentBottom="true"
-        android:background="@android:color/black">
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_item_device_list"
+            style="@style/tab_menu_item"
+            android:drawableTop="@drawable/icon_tab_item_devicelist"
+            android:text="@string/tab_item_devicelist" />
+
+        <RadioButton
+            android:id="@+id/rb_item_chat"
+            style="@style/tab_menu_item"
+            android:drawableTop="@drawable/icon_tab_item_chat"
+            android:text="@string/tab_item_chat" />
+
+        <RadioButton
+            android:id="@+id/rb_item_transport"
+            style="@style/tab_menu_item"
+            android:drawableTop="@drawable/icon_tab_item_transport"
+            android:text="@string/tab_item_transport" />
 
     </RadioGroup>
 </LinearLayout>

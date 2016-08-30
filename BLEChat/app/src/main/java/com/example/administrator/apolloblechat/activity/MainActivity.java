@@ -19,6 +19,11 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init();
+        initView();
+    }
+
+    private void initView() {
+
     }
 
     private void init() {
