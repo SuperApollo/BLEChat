@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.administrator.apolloblechat.R;
 
+
 /**
  * Created by Administrator on 2016/8/29.
  */
@@ -154,13 +155,35 @@ public class MyTittleBar extends RelativeLayout {
 
     public MyTittleBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.tittlebar);
-        title = typedArray.getString(R.styleable.tittlebar_title);
-        isShowBacklay = typedArray.getBoolean(R.styleable.tittlebar_showbacklay, false);
-        bitmap = BitmapFactory.decodeResource(getResources(), typedArray.getResourceId(R.styleable.tittlebar_backimg, 0));
-        isShowRight = typedArray.getBoolean(R.styleable.tittlebar_showrightlay, false);
-        rightContent = typedArray.getString(R.styleable.tittlebar_righttext);
-        rightBitmap = BitmapFactory.decodeResource(getResources(), typedArray.getResourceId(R.styleable.tittlebar_righttextbg, 0));
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.mytittlebar);
+        int n = typedArray.getIndexCount();
+        for (int i = 0; i < n; i++) {
+            int attr = typedArray.getIndex(i);
+            switch (attr) {
+                case R.styleable.mytittlebar_title:
+                    title = typedArray.getString(attr);
+                    break;
+                case R.styleable.mytittlebar_showbacklay:
+                    isShowBacklay = typedArray.getBoolean(attr, false);
+                    break;
+                case R.styleable.mytittlebar_backimg:
+                    bitmap = BitmapFactory.decodeResource(getResources(), typedArray.getResourceId(attr, 0));
+                    break;
+                case R.styleable.mytittlebar_showrightlay:
+                    isShowRight = typedArray.getBoolean(attr, false);
+                    break;
+                case R.styleable.mytittlebar_righttext:
+                    rightContent = typedArray.getString(attr);
+                    break;
+                case R.styleable.mytittlebar_righttextbg:
+                    rightBitmap = BitmapFactory.decodeResource(getResources(), typedArray.getResourceId(attr, 0));
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
         typedArray.recycle();
 
         initView(context);
