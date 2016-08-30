@@ -19,7 +19,7 @@
         <item name="android:gravity">center</item>
         <item name="android:paddingTop">3dp</item>
         <item name="android:textColor">@color/tab_item_textcolor</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
 </resources>
