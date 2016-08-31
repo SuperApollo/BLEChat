@@ -1,5 +1,7 @@
 package com.example.administrator.apolloblechat.fragment;
 
+import android.view.View;
+
 import com.example.administrator.apolloblechat.R;
 
 /**
@@ -9,5 +11,10 @@ public class ChatFragment extends BaseFragment {
     @Override
     protected int getViewId() {
         return R.layout.fragment_chat;
+    }
+
+    @Override
+    protected void initView(View view) {
+
     }
 }

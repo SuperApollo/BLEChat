@@ -1,7 +1,6 @@
 package com.example.administrator.apolloblechat.activity;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 

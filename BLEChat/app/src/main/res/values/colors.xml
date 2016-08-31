@@ -6,4 +6,6 @@
     <color name="tab_item_background">#8C6A61</color>
     <color name="tab_item_textcolor_selected">#33475f</color>
     <color name="tab_item_textcolor_normal">#2B2B2B</color>
+    <color name="grey">#333333</color>
+    <color name="grey_transparent">#66666666</color>
 </resources>
