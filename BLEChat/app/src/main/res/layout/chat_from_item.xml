@@ -28,6 +28,7 @@
             android:padding="5dp">
 
             <LinearLayout
+                android:id="@+id/chat_from_item_ll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -46,14 +47,16 @@
                     android:text="任盈盈" />
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/chat_from_item_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:padding="15dp"
+                android:text="你好啊" />
+
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="你好啊"
-
-            />
 
     </RelativeLayout>
 
