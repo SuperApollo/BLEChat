@@ -18,10 +18,10 @@
             android:padding="2dp"
             android:text="2016-9-1 16:53"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/chat_from_item_time"
             android:orientation="horizontal"
@@ -37,7 +37,7 @@
                     android:id="@+id/chat_from_item_icon"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    android:src="@drawable/icon_blechat_logo" />
+                    android:background="@drawable/icon_blechat_logo" />
 
                 <TextView
                     android:id="@+id/chat_from_item_name"
@@ -52,8 +52,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_chat_from"
                 android:padding="15dp"
-                android:text="你好啊" />
+                android:text="你好啊"
+                android:textSize="18sp" />
 
         </LinearLayout>
 
