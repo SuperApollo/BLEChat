@@ -6,4 +6,6 @@
     <string name="tab_item_devicelist">设备列表</string>
     <string name="tab_item_chat">聊天</string>
     <string name="tab_item_transport">传文件</string>
+    <string name="tab_item_contact">联系人</string>
+    <string name="tab_item_setting">设置</string>
 </resources>

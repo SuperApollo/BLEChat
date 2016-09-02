@@ -21,6 +21,7 @@ public class ChatAdapter extends BaseAdapter {
     private Context mContext;
     private List<ChatBean> mDatas;
 
+
     public ChatAdapter(Context mContext, List<ChatBean> mDatas) {
         this.mContext = mContext;
         this.mDatas = mDatas;
@@ -57,28 +58,24 @@ public class ChatAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ChatBean chatBean = mDatas.get(i);
-        ViewHolder holder = null;
-        TextView time = null;
-        ImageView icon = null;
-        TextView name = null;
-        TextView content = null;
+        ViewHolder holder ;
 
         if (view == null) {
+            holder = new ViewHolder();
             if (chatBean.isFrom()) {
                 view = LayoutInflater.from(mContext).inflate(R.layout.chat_from_item, null);
-                time = (TextView) view.findViewById(R.id.chat_from_item_time);
-                icon = (ImageView) view.findViewById(R.id.chat_from_item_icon);
-                name = (TextView) view.findViewById(R.id.chat_from_item_name);
-                content = (TextView) view.findViewById(R.id.chat_from_item_content);
+                holder.holderTvTime = (TextView) view.findViewById(R.id.chat_from_item_time);
+                holder.holderIvIcon = (ImageView) view.findViewById(R.id.chat_from_item_icon);
+                holder.holderTvName = (TextView) view.findViewById(R.id.chat_from_item_name);
+                holder.holderTvContent = (TextView) view.findViewById(R.id.chat_from_item_content);
             } else {
                 view = LayoutInflater.from(mContext).inflate(R.layout.chat_to_item, null);
-                time = (TextView) view.findViewById(R.id.chat_to_item_time);
-                icon = (ImageView) view.findViewById(R.id.chat_to_item_icon);
-                name = (TextView) view.findViewById(R.id.chat_to_item_name);
-                content = (TextView) view.findViewById(R.id.chat_to_item_content);
+                holder.holderTvTime = (TextView) view.findViewById(R.id.chat_to_item_time);
+                holder.holderIvIcon = (ImageView) view.findViewById(R.id.chat_to_item_icon);
+                holder.holderTvName = (TextView) view.findViewById(R.id.chat_to_item_name);
+                holder.holderTvContent = (TextView) view.findViewById(R.id.chat_to_item_content);
             }
 
-            holder = new ViewHolder(time, icon, name, content);
             view.setTag(holder);
 
         } else {
@@ -98,13 +95,6 @@ public class ChatAdapter extends BaseAdapter {
         ImageView holderIvIcon;
         TextView holderTvName;
         TextView holderTvContent;
-
-        public ViewHolder(TextView holderTvTime, ImageView holderIvIcon, TextView holderTvName, TextView holderTvContent) {
-            this.holderTvTime = holderTvTime;
-            this.holderIvIcon = holderIvIcon;
-            this.holderTvName = holderTvName;
-            this.holderTvContent = holderTvContent;
-        }
     }
 
 }

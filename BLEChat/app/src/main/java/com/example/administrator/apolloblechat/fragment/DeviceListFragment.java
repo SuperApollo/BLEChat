@@ -35,7 +35,7 @@ public class DeviceListFragment extends BaseFragment {
     private List<DeviceBean> getData() {
         List<DeviceBean> beans = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
-            Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.icon_blechat_logo);
+            Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.icon_ble);
             String name = "蓝牙 " + i;
             String id = "10086" + i;
             DeviceBean bean = new DeviceBean(icon, name, id);

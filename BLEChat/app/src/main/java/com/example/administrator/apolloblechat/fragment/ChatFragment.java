@@ -36,8 +36,8 @@ public class ChatFragment extends BaseFragment {
         List<ChatBean> chatBeans = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             ChatBean chatBean = null;
-            Bitmap iconFrom = BitmapFactory.decodeResource(getResources(),R.drawable.icon_blechat_logo);
-            Bitmap iconTo = BitmapFactory.decodeResource(getResources(), R.drawable.icon_tab_item_chat);
+            Bitmap iconFrom = BitmapFactory.decodeResource(getResources(),R.drawable.icon_gj);
+            Bitmap iconTo = BitmapFactory.decodeResource(getResources(), R.drawable.icon_hr);
             if (i % 2 == 0){
                 chatBean = new ChatBean("2016年9月2日10:04:47",iconFrom,"郭靖","蓉儿，吃了吗？",true);
             }else {
