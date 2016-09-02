@@ -3,6 +3,7 @@
     xmlns:mytittlebar="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey_transparent"
     android:orientation="vertical">
 
     <com.example.administrator.apolloblechat.widgets.MyTittleBar
@@ -11,4 +12,31 @@
         android:layout_height="58dp"
         mytittlebar:showbacklay="false"
         mytittlebar:title="联系人" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/bg_edittext"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/icon_search" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@color/transparent" />
+
+    </LinearLayout>
+
+    <com.example.administrator.apolloblechat.widgets.XListView
+        android:id="@+id/xlv_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

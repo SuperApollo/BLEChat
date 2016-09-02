@@ -24,6 +24,11 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     private RadioButton rb_item_transport;
     private RadioGroup rg_bottom;
     private long mExitTime;
+    private static final int FIRST = 10086;
+    private static final int SECOND = 10087;
+    private static final int THIRD = 10088;
+    private static final int FOUTH = 10089;
+    private int currentFragment = FIRST;
 
     @Override
     protected int getContentViewId() {
@@ -55,19 +60,46 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
         switch (checkedId) {
             case R.id.rb_item_device_list:
+                if (onCurrentFG(FIRST))
+                    return;
                 FragmentUtils.replace(this, R.id.ll_fragment_container, new DeviceListFragment());
+                currentFragment = FIRST;
                 break;
             case R.id.rb_item_contact:
+                if (onCurrentFG(SECOND))
+                    return;
                 FragmentUtils.replace(this, R.id.ll_fragment_container, new ContactFragment());
+                currentFragment = SECOND;
+                break;
             case R.id.rb_item_transport:
+                if (onCurrentFG(THIRD))
+                    return;
                 FragmentUtils.replace(this, R.id.ll_fragment_container, new TransportFragment());
+                currentFragment = THIRD;
                 break;
             case R.id.rb_item_setting:
+                if (onCurrentFG(FOUTH))
+                    return;
                 FragmentUtils.replace(this, R.id.ll_fragment_container, new SettingFragment());
+                currentFragment = FOUTH;
                 break;
             default:
                 break;
         }
+    }
+
+    /**
+     * 判断当前是否position的fragment
+     *
+     * @param positon
+     * @return
+     */
+    private boolean onCurrentFG(int positon) {
+        boolean flag = false;
+        if (positon == currentFragment) {
+            flag = true;
+        }
+        return flag;
     }
 
     @Override

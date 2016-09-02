@@ -8,4 +8,5 @@
     <color name="tab_item_textcolor_normal">#2B2B2B</color>
     <color name="grey">#333333</color>
     <color name="grey_transparent">#66666666</color>
+    <color name="transparent">#00000000</color>
 </resources>
