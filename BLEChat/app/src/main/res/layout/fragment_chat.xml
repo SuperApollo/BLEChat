@@ -9,7 +9,7 @@
         android:id="@+id/chat_title"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        mytittlebar:title="聊天" />
+        mytittlebar:mytitle="聊天" />
 
     <ListView
         android:id="@+id/lv_chatlist"

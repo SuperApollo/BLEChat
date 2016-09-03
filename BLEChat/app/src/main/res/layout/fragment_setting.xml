@@ -10,6 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="58dp"
         mytittlebar:showbacklay="false"
-        mytittlebar:title="设置" />
+        mytittlebar:mytitle="设置" />
 
 </LinearLayout>

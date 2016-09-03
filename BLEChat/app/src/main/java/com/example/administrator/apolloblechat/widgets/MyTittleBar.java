@@ -160,7 +160,7 @@ public class MyTittleBar extends RelativeLayout {
         for (int i = 0; i < n; i++) {
             int attr = typedArray.getIndex(i);
             switch (attr) {
-                case R.styleable.mytittlebar_title:
+                case R.styleable.mytittlebar_mytitle:
                     title = typedArray.getString(attr);
                     break;
                 case R.styleable.mytittlebar_showbacklay:
