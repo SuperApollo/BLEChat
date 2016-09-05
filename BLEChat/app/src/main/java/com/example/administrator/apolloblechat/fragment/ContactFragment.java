@@ -1,12 +1,15 @@
 package com.example.administrator.apolloblechat.fragment;
 
+import android.graphics.BitmapFactory;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.administrator.apolloblechat.R;
 import com.example.administrator.apolloblechat.adapter.ContactAdapter;
 import com.example.administrator.apolloblechat.bean.ContactBean;
+import com.example.administrator.apolloblechat.utils.FragmentUtils;
 import com.example.administrator.apolloblechat.widgets.SidebarView;
 import com.example.administrator.apolloblechat.widgets.XListView;
 
@@ -43,14 +46,32 @@ public class ContactFragment extends BaseFragment {
             }
         });
 
+        xlv_contact.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                FragmentUtils.replace(getActivity(),R.id.ll_fragment_container,new ChatFragment());
+            }
+        });
+
         ContactAdapter contactAdapter = new ContactAdapter(getContext(), getData());
         xlv_contact.setAdapter(contactAdapter);
     }
 
     private List<ContactBean> getData() {
         List<ContactBean> contactBeans = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            ContactBean contactBean = null;
+            if (i % 3 == 0) {
+                contactBean = new ContactBean(BitmapFactory.decodeResource(getResources(), R.drawable.icon_tab_item_contact),
+                        "王二小" + i, "156454" + i, "W");
+            } else {
+                contactBean = new ContactBean(BitmapFactory.decodeResource(getResources(), R.drawable.icon_tab_item_contact),
+                        "王二小" + i, "156454" + i, "");
+            }
 
+            contactBeans.add(contactBean);
+        }
 
-        return null;
+        return contactBeans;
     }
 }

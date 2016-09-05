@@ -1,6 +1,7 @@
 package com.example.administrator.apolloblechat.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,15 +27,6 @@ public class ContactAdapter extends BaseAdapter {
         this.mData = mData;
     }
 
-    @Override
-    public int getViewTypeCount() {
-        return 2;
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        return mData.get(position).getType();
-    }
 
     @Override
     public int getCount() {
@@ -57,24 +49,23 @@ public class ContactAdapter extends BaseAdapter {
         ContactBean contactBean = mData.get(i);
         if (view == null) {
             holder = new ViewHolder();
-            if (contactBean.getType() == 0) {
-                view = LayoutInflater.from(mContext).inflate(R.layout.contact_item_letter, null);
-                holder.tvLetter = (TextView) view.findViewById(R.id.tv_contactitem_letter);
-            } else {
-                view = LayoutInflater.from(mContext).inflate(R.layout.contact_item_name, null);
-                holder.ivIcon = (ImageView) view.findViewById(R.id.iv_contactitem_icon);
-                holder.tvName = (TextView) view.findViewById(R.id.tv_contactitem_name);
-            }
+
+            view = LayoutInflater.from(mContext).inflate(R.layout.contact_item, null);
+            holder.tvLetter = (TextView) view.findViewById(R.id.tv_contactitem_letter);
+            holder.ivIcon = (ImageView) view.findViewById(R.id.iv_contactitem_icon);
+            holder.tvName = (TextView) view.findViewById(R.id.tv_contactitem_name);
+
             view.setTag(holder);
 
         } else {
             holder = (ViewHolder) view.getTag();
         }
 
-        if (contactBean.getFirstWord()==null){
+        if (TextUtils.isEmpty(contactBean.getFirstWord())) {
             holder.tvLetter.setVisibility(View.GONE);
-        }else {
+        } else {
             holder.tvLetter.setText(contactBean.getFirstWord());
+            holder.tvLetter.setVisibility(View.VISIBLE);
         }
 
         holder.ivIcon.setImageBitmap(contactBean.getIcon());

@@ -4,10 +4,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.RadioGroup;
 
 import com.example.administrator.apolloblechat.R;
 import com.example.administrator.apolloblechat.adapter.ChatAdapter;
 import com.example.administrator.apolloblechat.bean.ChatBean;
+import com.example.administrator.apolloblechat.utils.FragmentUtils;
+import com.example.administrator.apolloblechat.widgets.MyTittleBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +21,8 @@ import java.util.List;
 public class ChatFragment extends BaseFragment {
 
     private ListView lv_chatlist;
+    private RadioGroup rg_bottom;
+    private MyTittleBar chat_title;
 
     @Override
     protected int getViewId() {
@@ -26,6 +31,19 @@ public class ChatFragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
+        //隐藏底部
+        rg_bottom = (RadioGroup) getActivity().findViewById(R.id.rg_bottom);
+        rg_bottom.setVisibility(View.INVISIBLE);
+
+        chat_title = queryViewById(view, R.id.chat_title);
+        chat_title.setOnBackListener(new MyTittleBar.OnBackListener() {
+            @Override
+            public void onBackClick() {
+                rg_bottom.setVisibility(View.VISIBLE);
+                FragmentUtils.replace(getActivity(),R.id.ll_fragment_container,new ContactFragment());
+            }
+        });
+
         lv_chatlist = queryViewById(view, R.id.lv_chatlist);
         ChatAdapter chatAdapter = new ChatAdapter(getContext(),getData());
         lv_chatlist.setAdapter(chatAdapter);

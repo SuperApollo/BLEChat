@@ -10,14 +10,12 @@ public class ContactBean {
     private String name;
     private String id;
     private String firstWord;//首字母
-    private int type;//0为首字母显示行，1为姓名显示行
 
-    public ContactBean(Bitmap icon, String name, String id, String firstWord, int type) {
+    public ContactBean(Bitmap icon, String name, String id, String firstWord) {
         this.icon = icon;
         this.name = name;
         this.id = id;
         this.firstWord = firstWord;
-        this.type = type;
     }
 
     public Bitmap getIcon() {
@@ -52,16 +50,9 @@ public class ContactBean {
         this.firstWord = firstWord;
     }
 
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
 
     @Override
     public String toString() {
-        return "bitmap: " + icon + " name: " + name + " id: " + id + " typ: " + type + " firstWord: " + firstWord;
+        return "bitmap: " + icon + " name: " + name + " id: " + id + " firstWord: " + firstWord;
     }
 }
