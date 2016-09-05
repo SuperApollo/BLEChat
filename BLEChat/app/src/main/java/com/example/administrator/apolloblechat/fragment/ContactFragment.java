@@ -5,8 +5,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.administrator.apolloblechat.R;
+import com.example.administrator.apolloblechat.adapter.ContactAdapter;
+import com.example.administrator.apolloblechat.bean.ContactBean;
 import com.example.administrator.apolloblechat.widgets.SidebarView;
 import com.example.administrator.apolloblechat.widgets.XListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2016/9/2.
@@ -37,5 +42,15 @@ public class ContactFragment extends BaseFragment {
 
             }
         });
+
+        ContactAdapter contactAdapter = new ContactAdapter(getContext(), getData());
+        xlv_contact.setAdapter(contactAdapter);
+    }
+
+    private List<ContactBean> getData() {
+        List<ContactBean> contactBeans = new ArrayList<>();
+
+
+        return null;
     }
 }
