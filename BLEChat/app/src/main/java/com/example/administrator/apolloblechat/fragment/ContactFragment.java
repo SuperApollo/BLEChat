@@ -2,6 +2,7 @@ package com.example.administrator.apolloblechat.fragment;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;

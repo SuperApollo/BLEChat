@@ -32,7 +32,7 @@ public class DeviceListAdapter<T> extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int i) {
+    public DeviceBean getItem(int i) {
         return mDatas.get(i);
     }
 
