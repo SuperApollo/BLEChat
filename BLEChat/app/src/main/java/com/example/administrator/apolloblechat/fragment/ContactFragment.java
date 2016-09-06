@@ -2,7 +2,6 @@ package com.example.administrator.apolloblechat.fragment;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -22,8 +21,6 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -39,13 +36,15 @@ public class ContactFragment extends BaseFragment {
     private XListView xlv_contact;
     private SidebarView sidebar_contact;
     private String[] names;
-    private String name = "刀白凤 丁春秋 马夫人 马五德 小翠 于光豪 巴天石 不平道人 邓百川 风波恶 " +
+    private String name = "abc 刀白凤 丁春秋 马夫人 马五德 小翠 于光豪 巴天石 不平道人 邓百川 风波恶 " +
             "甘宝宝 公冶乾 木婉清 包不同 天狼子 太皇太后 王语嫣 乌老大 无崖子 云岛主 云中鹤 止清 白世镜 " +
             "天山童姥 本参 本观 本相 本因 出尘子 冯阿三 古笃诚 少林老僧 过彦之 兰剑 平婆婆 石清露 石嫂 " +
             "司空玄 司马林 玄慈 玄寂 玄苦 玄难 玄生 玄痛 叶二娘 左子穆 耶律莫哥 李春来 李傀儡 李秋水 刘竹庄 " +
             "祁六三 乔峰 全冠清 朴者和尚 阮星竹 许卓诚 朱丹臣 竹剑 阿碧 阿洪 阿胜 西夏宫女 阿朱 阿紫 波罗星 陈孤雁 " +
             "何望海 鸠摩智 来福儿 耶律洪基 努儿海 宋长老 苏星河 苏辙 完颜阿古打 吴长风 枯荣长老 辛双清 严妈妈 余婆婆 岳老三 " +
-            "张全祥 单伯山 单季山 单叔山 郭靖 黄蓉";
+            "张全祥 单伯山 单季山 单叔山 郭靖 黄蓉 def 额";
+    private ContactAdapter contactAdapter;
+    private char firtLetter;
 
     @Override
     protected int getViewId() {
@@ -63,6 +62,8 @@ public class ContactFragment extends BaseFragment {
         sidebar_contact.setOnLetterClickedListener(new SidebarView.OnLetterClickedListener() {
             @Override
             public void onLetterClicked(String str) {
+                int positon = contactAdapter.getPositionForSection(str.charAt(0));
+                xlv_contact.setSelection(positon + 1);
 
             }
         });
@@ -75,7 +76,7 @@ public class ContactFragment extends BaseFragment {
         });
 
         names = name.split(" ");
-        ContactAdapter contactAdapter = new ContactAdapter(getContext(), getData());
+        contactAdapter = new ContactAdapter(getContext(), getData());
         xlv_contact.setAdapter(contactAdapter);
 
 
@@ -97,7 +98,17 @@ public class ContactFragment extends BaseFragment {
             } catch (BadHanyuPinyinOutputFormatCombination badHanyuPinyinOutputFormatCombination) {
                 badHanyuPinyinOutputFormatCombination.printStackTrace();
             }
-            char firtLetter = pinyin[0].charAt(0);
+            if (pinyin == null) {
+                firtLetter = '#';
+            } else {
+                firtLetter = pinyin[0].charAt(0);
+            }
+
+            try {
+
+            } catch (Exception e) {
+
+            }
 
             contactBean = new ContactBean(icon, names[i], "10086" + i, firtLetter + "");
 
