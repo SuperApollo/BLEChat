@@ -61,7 +61,7 @@ public class ContactAdapter extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
 
-        if (TextUtils.isEmpty(contactBean.getFirstWord())) {
+        if (TextUtils.isEmpty(contactBean.getFirstWord()+"")) {
             holder.tvLetter.setVisibility(View.GONE);
         } else {
             holder.tvLetter.setText(contactBean.getFirstWord());
@@ -78,4 +78,5 @@ public class ContactAdapter extends BaseAdapter {
         ImageView ivIcon;
         TextView tvLetter, tvName;
     }
+    
 }
