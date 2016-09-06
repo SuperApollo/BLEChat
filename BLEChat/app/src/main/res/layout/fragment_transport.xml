@@ -8,6 +8,6 @@
     <com.example.administrator.apolloblechat.widgets.MyTittleBar
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        mytittlebar:title="传文件" />
+        mytittlebar:mytitle="传文件" />
 
 </LinearLayout>

@@ -9,15 +9,15 @@
         android:id="@+id/chat_title"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        mytittlebar:showbacklay="true"
-        mytittlebar:title="聊天"
-        />
+        mytittlebar:mytitle="聊天"
+        mytittlebar:showbacklay="true" />
+
 
     <ListView
         android:id="@+id/lv_chatlist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scrollbars="none"/>
+        android:scrollbars="none" />
 
 
 </LinearLayout>
