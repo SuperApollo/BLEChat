@@ -146,16 +146,6 @@ public class ContactFragment extends BaseFragment {
             return null;
         }
         List<ContactBean> results = new ArrayList<>();
-//        if (s.length() > 0) {
-//            for (ContactBean bean : contactBeanList) {
-//                if (bean.getName() != null && bean.getId() != null) {
-//                    if (bean.getName().contains(s) || bean.getId().contains(s)) {
-//                        results.add(bean);
-//                    }
-//                }
-//            }
-//        }
-
 
         String pinyin = getPinyin(s);
         for (ContactBean bean : contactBeanList) {
@@ -173,6 +163,8 @@ public class ContactFragment extends BaseFragment {
         if (TextUtils.isEmpty(bean.getName()) || TextUtils.isEmpty(bean.getId()) || TextUtils.isEmpty(pinyin)) {
             return flag;
         }
+
+
         //简拼匹配，输入字符串长度小于6，按首字母匹配
         if (pinyin.length() < 6) {
             String firstWord = bean.getFirstWord();
@@ -185,11 +177,16 @@ public class ContactFragment extends BaseFragment {
             Pattern nameMatcher = Pattern.compile(pinyin, Pattern.CASE_INSENSITIVE);
             flag = nameMatcher.matcher(namePinyin).find();
         }
+        //按匹配号码
+        if (!flag) {
+            Pattern idMathcher = Pattern.compile(pinyin, Pattern.CASE_INSENSITIVE);
+            flag = idMathcher.matcher(bean.getId()).find();
+        }
 
         return flag;
     }
 
-    private String getPinyin(CharSequence s) {
+    private String getPinyin(String s) {
         HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
         format.setCaseType(HanyuPinyinCaseType.UPPERCASE);//大写
         format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);//无音标
@@ -198,6 +195,11 @@ public class ContactFragment extends BaseFragment {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
+            //判断为字母或数字
+            if ((c != 48) && (c != 57) && (c <= 122)) {
+                sb.append(c);
+            }
+
             try {
                 String[] pinyin = PinyinHelper.toHanyuPinyinStringArray(c, format);
                 if (pinyin != null) {
