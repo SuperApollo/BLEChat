@@ -1,11 +1,9 @@
 package com.example.administrator.apolloblechat.fragment;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -15,6 +13,7 @@ import com.example.administrator.apolloblechat.R;
 import com.example.administrator.apolloblechat.adapter.ContactAdapter;
 import com.example.administrator.apolloblechat.bean.ContactBean;
 import com.example.administrator.apolloblechat.utils.FragmentUtils;
+import com.example.administrator.apolloblechat.utils.ToastUtil;
 import com.example.administrator.apolloblechat.widgets.SidebarView;
 import com.example.administrator.apolloblechat.widgets.XListView;
 
@@ -25,11 +24,12 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 
-import java.nio.channels.NonWritableChannelException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Created by Administrator on 2016/9/2.
@@ -50,6 +50,7 @@ public class ContactFragment extends BaseFragment {
             "张全祥 单伯山 单季山 单叔山 郭靖 黄蓉 def 额";
     private ContactAdapter contactAdapter;
     private char firtLetter;
+    private List<ContactBean> contactBeanList;
 
     @Override
     protected int getViewId() {
@@ -80,6 +81,21 @@ public class ContactFragment extends BaseFragment {
             }
         });
 
+        xlv_contact.setPullRefreshEnable(false);
+
+        names = name.split(" ");
+        contactBeanList = getData();
+        contactAdapter = new ContactAdapter(getContext(), contactBeanList);
+        xlv_contact.setAdapter(contactAdapter);
+
+        editSearch();
+
+    }
+
+    /**
+     * 搜索
+     */
+    private void editSearch() {
         et_contact_search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -88,6 +104,14 @@ public class ContactFragment extends BaseFragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                List<ContactBean> searchContacts;
+                String str = et_contact_search.getText().toString();
+                if (s != null && !"".equals(str)) {
+                    searchContacts = search(str, contactBeanList);
+                    reLoadList(searchContacts);
+                } else {
+                    reLoadList(getData());
+                }
 
             }
 
@@ -97,11 +121,96 @@ public class ContactFragment extends BaseFragment {
             }
         });
 
-        names = name.split(" ");
-        contactAdapter = new ContactAdapter(getContext(), getData());
-        xlv_contact.setAdapter(contactAdapter);
+    }
+
+    private void reLoadList(List<ContactBean> searchContacts) {
+        if (searchContacts != null && searchContacts.size() > 0) {
+            contactBeanList.clear();
+            contactBeanList.addAll(searchContacts);
+        } else {
+            contactBeanList.clear();
+        }
+        contactAdapter.notifyDataSetChanged();
+    }
 
 
+    /**
+     * 按号码、拼音搜索
+     *
+     * @param s
+     * @param contactBeanList
+     * @return
+     */
+    private List<ContactBean> search(String s, List<ContactBean> contactBeanList) {
+        if (contactBeanList == null || contactBeanList.size() == 0) {
+            return null;
+        }
+        List<ContactBean> results = new ArrayList<>();
+//        if (s.length() > 0) {
+//            for (ContactBean bean : contactBeanList) {
+//                if (bean.getName() != null && bean.getId() != null) {
+//                    if (bean.getName().contains(s) || bean.getId().contains(s)) {
+//                        results.add(bean);
+//                    }
+//                }
+//            }
+//        }
+
+
+        String pinyin = getPinyin(s);
+        for (ContactBean bean : contactBeanList) {
+            if (containPinyin(bean, pinyin)) {
+                results.add(bean);
+            }
+        }
+
+
+        return results;
+    }
+
+    private boolean containPinyin(ContactBean bean, String pinyin) {
+        boolean flag = false;
+        if (TextUtils.isEmpty(bean.getName()) || TextUtils.isEmpty(bean.getId()) || TextUtils.isEmpty(pinyin)) {
+            return flag;
+        }
+        //简拼匹配，输入字符串长度小于6，按首字母匹配
+        if (pinyin.length() < 6) {
+            String firstWord = bean.getFirstWord();
+            Pattern firstLettMatcher = Pattern.compile(pinyin, Pattern.CASE_INSENSITIVE);
+            flag = firstLettMatcher.matcher(firstWord).find();
+        }
+        //全拼匹配，如果简拼已找到就不再走了
+        if (!flag) {
+            String namePinyin = getPinyin(bean.getName());
+            Pattern nameMatcher = Pattern.compile(pinyin, Pattern.CASE_INSENSITIVE);
+            flag = nameMatcher.matcher(namePinyin).find();
+        }
+
+        return flag;
+    }
+
+    private String getPinyin(CharSequence s) {
+        HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
+        format.setCaseType(HanyuPinyinCaseType.UPPERCASE);//大写
+        format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);//无音标
+        format.setVCharType(HanyuPinyinVCharType.WITH_V);
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            try {
+                String[] pinyin = PinyinHelper.toHanyuPinyinStringArray(c, format);
+                if (pinyin != null) {
+                    String str = Arrays.toString(pinyin);
+                    sb.append(str.substring(1, str.length() - 1));
+                }
+
+            } catch (BadHanyuPinyinOutputFormatCombination badHanyuPinyinOutputFormatCombination) {
+                badHanyuPinyinOutputFormatCombination.printStackTrace();
+            }
+
+        }
+        return sb.toString();
     }
 
     private List<ContactBean> getData() {
@@ -110,20 +219,12 @@ public class ContactFragment extends BaseFragment {
         for (int i = 0; i < names.length; i++) {
             ContactBean contactBean = null;
 
-            HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
-            format.setCaseType(HanyuPinyinCaseType.UPPERCASE);//大写
-            format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);//无音标
-            format.setVCharType(HanyuPinyinVCharType.WITH_V);
-            String[] pinyin = new String[0];
-            try {
-                pinyin = PinyinHelper.toHanyuPinyinStringArray(names[i].charAt(0), format);
-            } catch (BadHanyuPinyinOutputFormatCombination badHanyuPinyinOutputFormatCombination) {
-                badHanyuPinyinOutputFormatCombination.printStackTrace();
-            }
-            if (pinyin == null) {
-                firtLetter = '#';
+            String py = getPinyin(names[i]);
+
+            if (py != null && py.length() > 0) {
+                firtLetter = py.charAt(0);
             } else {
-                firtLetter = pinyin[0].charAt(0);
+                firtLetter = '#';
             }
 
             try {
