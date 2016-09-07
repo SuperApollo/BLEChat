@@ -34,7 +34,7 @@ public class ChatFragment extends BaseFragment {
     protected void initView(View view) {
         //隐藏底部
         rg_bottom = (RadioGroup) getActivity().findViewById(R.id.rg_bottom);
-        rg_bottom.setVisibility(View.INVISIBLE);
+        rg_bottom.setVisibility(View.GONE);
 
         chat_title = queryViewById(view, R.id.chat_title);
         chat_title.setOnBackListener(new MyTittleBar.OnBackListener() {
