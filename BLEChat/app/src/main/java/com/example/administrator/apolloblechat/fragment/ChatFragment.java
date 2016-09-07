@@ -2,6 +2,7 @@ package com.example.administrator.apolloblechat.fragment;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.RadioGroup;
@@ -40,12 +41,12 @@ public class ChatFragment extends BaseFragment {
             @Override
             public void onBackClick() {
                 rg_bottom.setVisibility(View.VISIBLE);
-                FragmentUtils.replace(getActivity(),R.id.ll_fragment_container,new ContactFragment());
+                FragmentUtils.replace(getActivity(), R.id.ll_fragment_container, new ContactFragment());
             }
         });
 
         lv_chatlist = queryViewById(view, R.id.lv_chatlist);
-        ChatAdapter chatAdapter = new ChatAdapter(getContext(),getData());
+        ChatAdapter chatAdapter = new ChatAdapter(getContext(), getData());
         lv_chatlist.setAdapter(chatAdapter);
     }
 
@@ -54,12 +55,12 @@ public class ChatFragment extends BaseFragment {
         List<ChatBean> chatBeans = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             ChatBean chatBean = null;
-            Bitmap iconFrom = BitmapFactory.decodeResource(getResources(),R.drawable.icon_gj);
-            Bitmap iconTo = BitmapFactory.decodeResource(getResources(), R.drawable.icon_hr);
-            if (i % 2 == 0){
-                chatBean = new ChatBean("2016年9月2日10:04:47",iconFrom,"郭靖","蓉儿，吃了吗？",true);
-            }else {
-                chatBean = new ChatBean("2016年9月2日10:08:50",iconTo,"黄蓉","靖哥哥，你的降龙十八掌练得怎么样了？",false);
+            Drawable iconFrom = getResources().getDrawable(R.drawable.icon_gj);
+            Drawable iconTo = getResources().getDrawable(R.drawable.icon_hr);
+            if (i % 2 == 0) {
+                chatBean = new ChatBean("2016年9月2日10:04:47", iconFrom, "郭靖", "蓉儿，吃了吗？", true);
+            } else {
+                chatBean = new ChatBean("2016年9月2日10:08:50", iconTo, "黄蓉", "靖哥哥，你的降龙十八掌练得怎么样了？", false);
             }
             chatBeans.add(chatBean);
         }

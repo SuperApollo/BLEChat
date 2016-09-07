@@ -1,7 +1,6 @@
 package com.example.administrator.apolloblechat.fragment;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -44,7 +43,7 @@ public class DeviceListFragment extends BaseFragment {
     private List<DeviceBean> getData() {
         List<DeviceBean> beans = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
-            Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.icon_ble);
+            Drawable icon = getResources().getDrawable(R.drawable.icon_ble);
             String name = "蓝牙 " + i;
             String id = "10086" + i;
             DeviceBean bean = new DeviceBean(icon, name, id);

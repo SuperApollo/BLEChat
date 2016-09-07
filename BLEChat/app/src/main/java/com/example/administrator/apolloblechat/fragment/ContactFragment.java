@@ -2,6 +2,7 @@ package com.example.administrator.apolloblechat.fragment;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -105,7 +106,7 @@ public class ContactFragment extends BaseFragment {
 
     private List<ContactBean> getData() {
         List<ContactBean> contactBeans = new ArrayList<>();
-        Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.icon_tab_item_contact);
+        Drawable icon = getResources().getDrawable(R.drawable.icon_tab_item_contact);
         for (int i = 0; i < names.length; i++) {
             ContactBean contactBean = null;
 

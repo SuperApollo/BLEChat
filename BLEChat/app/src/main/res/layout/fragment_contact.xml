@@ -10,8 +10,8 @@
         android:id="@+id/title_contact"
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        mytittlebar:showbacklay="false"
-        mytittlebar:mytitle="联系人" />
+        mytittlebar:mytitle="联系人"
+        mytittlebar:showbacklay="false" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,12 +27,17 @@
             android:layout_margin="5dp"
             android:src="@drawable/icon_search" />
 
-        <EditText
+        <com.example.administrator.apolloblechat.widgets.ClearEditText
             android:id="@+id/et_contact_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:background="@color/transparent" />
+            android:background="@color/transparent"
+            android:drawablePadding="10dp"
+            android:drawableRight="@mipmap/icon_delete"
+            android:hint="搜索"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp" />
 
     </LinearLayout>
 
@@ -51,7 +56,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:scrollbars="none"/>
+                android:scrollbars="none" />
 
             <com.example.administrator.apolloblechat.widgets.SidebarView
                 android:id="@+id/sidebar_contact"
@@ -66,10 +71,10 @@
             android:layout_height="80dp"
             android:layout_centerInParent="true"
             android:background="@drawable/bg_tv_show"
+            android:gravity="center"
             android:textColor="@color/white"
-            android:visibility="invisible"
             android:textSize="30sp"
-            android:gravity="center"/>
+            android:visibility="invisible" />
     </RelativeLayout>
 
 

@@ -1,18 +1,18 @@
 package com.example.administrator.apolloblechat.bean;
 
-import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 
 /**
  * Created by Administrator on 2016/9/2.
  */
 public class ChatBean {
     private String time;
-    private Bitmap icon;
+    private Drawable icon;
     private String name;
     private String content;
     private boolean isFrom;
 
-    public ChatBean(String time, Bitmap icon, String name, String content, boolean isFrom) {
+    public ChatBean(String time, Drawable icon, String name, String content, boolean isFrom) {
         this.time = time;
         this.icon = icon;
         this.name = name;
@@ -28,11 +28,11 @@ public class ChatBean {
         this.time = time;
     }
 
-    public Bitmap getIcon() {
+    public Drawable getIcon() {
         return icon;
     }
 
-    public void setIcon(Bitmap icon) {
+    public void setIcon(Drawable icon) {
         this.icon = icon;
     }
 

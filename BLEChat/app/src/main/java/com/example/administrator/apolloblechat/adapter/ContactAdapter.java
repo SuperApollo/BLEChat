@@ -69,7 +69,7 @@ public class ContactAdapter extends BaseAdapter implements SectionIndexer {
             holder.tvLetter.setVisibility(View.VISIBLE);
         }
 
-        holder.ivIcon.setImageBitmap(contactBean.getIcon());
+        holder.ivIcon.setImageDrawable(contactBean.getIcon());
         holder.tvName.setText(contactBean.getName());
 
         return view;

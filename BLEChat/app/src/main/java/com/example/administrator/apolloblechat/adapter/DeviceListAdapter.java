@@ -56,7 +56,7 @@ public class DeviceListAdapter<T> extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
 
-        holder.ivHolderIcon.setImageBitmap(mDatas.get(i).getDeviceIcon());
+        holder.ivHolderIcon.setImageDrawable(mDatas.get(i).getDeviceIcon());
         holder.tvHolderName.setText(mDatas.get(i).getDeviceName());
         holder.tvHolderId.setText(mDatas.get(i).getDeviceId());
 

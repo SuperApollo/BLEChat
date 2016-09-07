@@ -1,28 +1,28 @@
 package com.example.administrator.apolloblechat.bean;
 
-import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 
 /**
  * Created by Administrator on 2016/9/5.
  */
 public class ContactBean {
-    private Bitmap icon;
+    private Drawable icon;
     private String name;
     private String id;
     private String firstWord;//首字母
 
-    public ContactBean(Bitmap icon, String name, String id, String firstWord) {
+    public ContactBean(Drawable icon, String name, String id, String firstWord) {
         this.icon = icon;
         this.name = name;
         this.id = id;
         this.firstWord = firstWord;
     }
 
-    public Bitmap getIcon() {
+    public Drawable getIcon() {
         return icon;
     }
 
-    public void setIcon(Bitmap icon) {
+    public void setIcon(Drawable icon) {
         this.icon = icon;
     }
 

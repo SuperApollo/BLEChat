@@ -58,7 +58,7 @@ public class ChatAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ChatBean chatBean = mDatas.get(i);
-        ViewHolder holder ;
+        ViewHolder holder;
 
         if (view == null) {
             holder = new ViewHolder();
@@ -83,7 +83,7 @@ public class ChatAdapter extends BaseAdapter {
         }
 
         holder.holderTvTime.setText(chatBean.getTime());
-        holder.holderIvIcon.setImageBitmap(chatBean.getIcon());
+        holder.holderIvIcon.setImageDrawable(chatBean.getIcon());
         holder.holderTvName.setText(chatBean.getName());
         holder.holderTvContent.setText(chatBean.getContent());
 
