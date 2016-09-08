@@ -9,16 +9,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.administrator.apolloblechat.R;
+import com.example.administrator.apolloblechat.utils.ToastUtil;
 
 /**
  * Created by Administrator on 2016/8/23.
  */
 public abstract class BaseFragment extends Fragment implements View.OnClickListener {
     protected Context mContext;
+    protected ToastUtil mToastUtil;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = getContext();
+        mToastUtil = ToastUtil.getInstance();
     }
 
     @Nullable

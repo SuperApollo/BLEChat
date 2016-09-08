@@ -1,6 +1,9 @@
 package com.example.administrator.apolloblechat.utils;
 
 import android.content.Context;
+import android.util.DisplayMetrics;
+import android.view.Display;
+import android.view.WindowManager;
 
 /**
  * Created by Administrator on 2016/9/2.
@@ -49,5 +52,28 @@ public class ViewUtil {
     public static int sp2px(Context context, float spValue) {
         final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
         return (int) (spValue * fontScale + 0.5f);
+    }
+    /**
+     * 获取屏幕分辨率宽
+     */
+    public static int getScreenWidth(Context context) {
+        DisplayMetrics dm = new DisplayMetrics();
+        WindowManager wm = (WindowManager) context
+                .getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        display.getMetrics(dm);
+        return dm.widthPixels;
+    }
+
+    /**
+     * 获取屏幕分辨率高
+     */
+    public static int getScreenHeight(Context context) {
+        DisplayMetrics dm = new DisplayMetrics();
+        WindowManager wm = (WindowManager) context
+                .getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        display.getMetrics(dm);
+        return dm.heightPixels;
     }
 }

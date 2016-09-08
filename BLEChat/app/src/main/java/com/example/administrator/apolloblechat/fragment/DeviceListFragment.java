@@ -35,7 +35,7 @@ public class DeviceListFragment extends BaseFragment {
         lv_devicelist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ToastUtil.toaster(deviceListAdapter.getItem(position).getDeviceName());
+                mToastUtil.toaster(deviceListAdapter.getItem(position).getDeviceName());
             }
         });
     }

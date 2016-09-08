@@ -9,7 +9,55 @@
         android:id="@+id/title_setting"
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        mytittlebar:showbacklay="false"
-        mytittlebar:mytitle="更多" />
+        mytittlebar:mytitle="更多"
+        mytittlebar:showbacklay="false" />
+
+    <com.example.administrator.apolloblechat.widgets.ItemView
+        android:id="@+id/item_more_setting"
+        layout="@layout/base_itemview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.example.administrator.apolloblechat.widgets.ItemView
+        android:id="@+id/item_more_mine"
+        layout="@layout/base_itemview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="15dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="15dp">
+
+        <include
+            android:id="@+id/tv_item_more_flash"
+            layout="@layout/base_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <com.example.administrator.apolloblechat.widgets.ToggleView
+            android:id="@+id/toggle_item_more_flash"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical" />
+    </LinearLayout>
+
+    <include
+        layout="@layout/line_view_gray"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp" />
+
+    <com.example.administrator.apolloblechat.widgets.ItemView
+        android:id="@+id/item_more_about"
+        layout="@layout/base_itemview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
