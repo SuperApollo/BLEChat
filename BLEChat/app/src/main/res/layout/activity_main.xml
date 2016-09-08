@@ -42,10 +42,10 @@
             android:text="@string/tab_item_transport" />
 
         <RadioButton
-            android:id="@+id/rb_item_setting"
+            android:id="@+id/rb_item_more"
             style="@style/tab_menu_item"
-            android:drawableTop="@drawable/icon_tab_item_setting"
-            android:text="@string/tab_item_setting" />
+            android:drawableTop="@drawable/icon_tab_item_more"
+            android:text="@string/tab_item_more" />
 
     </RadioGroup>
 </LinearLayout>

@@ -7,10 +7,10 @@ import com.example.administrator.apolloblechat.R;
 /**
  * Created by Administrator on 2016/9/2.
  */
-public class SettingFragment extends BaseFragment {
+public class MoreFragment extends BaseFragment {
     @Override
     protected int getViewId() {
-        return R.layout.fragment_setting;
+        return R.layout.fragment_more;
     }
 
     @Override

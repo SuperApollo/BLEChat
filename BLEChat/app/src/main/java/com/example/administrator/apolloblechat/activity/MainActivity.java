@@ -6,10 +6,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.example.administrator.apolloblechat.R;
-import com.example.administrator.apolloblechat.fragment.ChatFragment;
 import com.example.administrator.apolloblechat.fragment.ContactFragment;
 import com.example.administrator.apolloblechat.fragment.DeviceListFragment;
-import com.example.administrator.apolloblechat.fragment.SettingFragment;
+import com.example.administrator.apolloblechat.fragment.MoreFragment;
 import com.example.administrator.apolloblechat.fragment.TransportFragment;
 import com.example.administrator.apolloblechat.utils.FragmentUtils;
 import com.example.administrator.apolloblechat.utils.ToastUtil;
@@ -77,10 +76,10 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 FragmentUtils.replace(this, R.id.ll_fragment_container, new TransportFragment());
                 currentFragment = THIRD;
                 break;
-            case R.id.rb_item_setting:
+            case R.id.rb_item_more:
                 if (onCurrentFG(FOUTH))
                     return;
-                FragmentUtils.replace(this, R.id.ll_fragment_container, new SettingFragment());
+                FragmentUtils.replace(this, R.id.ll_fragment_container, new MoreFragment());
                 currentFragment = FOUTH;
                 break;
             default:
