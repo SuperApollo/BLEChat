@@ -250,7 +250,7 @@ public class ToggleView extends View implements View.OnClickListener {
         slideBtn_left = (slideBtn_left < maxLeft) ? slideBtn_left : maxLeft;
 
 		/*
-		 * 刷新当前视图 导致 执行onDraw执行
+         * 刷新当前视图 导致 执行onDraw执行
 		 */
         invalidate();
         //onClickCallBack.onClick(this,isChecked);

@@ -23,4 +23,5 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:24.2.0'
     compile files('libs/pinyin4j-2.5.0.jar')
+    compile 'com.zcw:togglebutton-library:1.0.0'
 }
