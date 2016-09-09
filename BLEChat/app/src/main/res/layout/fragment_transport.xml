@@ -10,4 +10,14 @@
         android:layout_height="58dp"
         mytittlebar:mytitle="传文件" />
 
+    <com.example.administrator.apolloblechat.widgets.ItemView
+        android:id="@+id/item_transport_outbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.example.administrator.apolloblechat.widgets.ItemView
+        android:id="@+id/item_transport_inbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

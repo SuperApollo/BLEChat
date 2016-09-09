@@ -13,11 +13,6 @@
         mytittlebar:mytitle="更多"
         mytittlebar:showbacklay="false" />
 
-    <com.example.administrator.apolloblechat.widgets.ItemView
-        android:id="@+id/item_more_setting"
-        layout="@layout/base_itemview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <com.example.administrator.apolloblechat.widgets.ItemView
         android:id="@+id/item_more_mine"
@@ -54,14 +49,20 @@
 
         <com.zcw.togglebutton.ToggleButton
             android:id="@+id/toggle_item_more_flash"
-            android:layout_width="54dp"
-            android:layout_height="30dp"
+            android:layout_width="45dp"
+            android:layout_height="25dp"
             toggle:tbBorderWidth="2dp"
             toggle:tbOffBorderColor="#000"
             toggle:tbOffColor="#ddd"
             toggle:tbOnColor="#f00"
             toggle:tbSpotColor="#00f" />
     </LinearLayout>
+
+    <com.example.administrator.apolloblechat.widgets.ItemView
+        android:id="@+id/item_more_setting"
+        layout="@layout/base_itemview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <com.example.administrator.apolloblechat.widgets.ItemView
         android:id="@+id/item_more_about"
