@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -49,11 +50,13 @@
                 android:layout_alignParentRight="true"
                 android:orientation="vertical">
 
-                <ImageView
+                <com.example.administrator.apolloblechat.widgets.CircleImageView
                     android:id="@+id/chat_to_item_icon"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    android:src="@drawable/icon_tab_item_chat" />
+                    android:src="@drawable/icon_tab_item_chat"
+                    app:civ_border_color="#6a8"
+                    app:civ_border_width="2dp" />
 
                 <TextView
                     android:id="@+id/chat_to_item_name"
@@ -61,7 +64,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="我"
-                    android:textColor="@color/grey_transparent"/>
+                    android:textColor="@color/grey_transparent" />
             </LinearLayout>
 
         </RelativeLayout>
