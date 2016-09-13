@@ -217,7 +217,7 @@ public class ContactFragment extends BaseFragment {
 
     private List<ContactBean> getData() {
         List<ContactBean> contactBeans = new ArrayList<>();
-        Drawable icon = getResources().getDrawable(R.drawable.icon_tab_item_contact);
+        Drawable icon = getResources().getDrawable(R.mipmap.icon_tab_item_contact);
         for (int i = 0; i < names.length; i++) {
             ContactBean contactBean = null;
 

@@ -53,8 +53,8 @@ public class ChatFragment extends BaseFragment {
         List<ChatBean> chatBeans = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             ChatBean chatBean = null;
-            Drawable iconFrom = getResources().getDrawable(R.drawable.icon_gj);
-            Drawable iconTo = getResources().getDrawable(R.drawable.icon_hr);
+            Drawable iconFrom = getResources().getDrawable(R.mipmap.icon_gj);
+            Drawable iconTo = getResources().getDrawable(R.mipmap.icon_hr);
             if (i % 2 == 0) {
                 chatBean = new ChatBean("2016年9月2日10:04:47", iconFrom, "郭靖", "蓉儿，吃了吗？", true);
             } else {

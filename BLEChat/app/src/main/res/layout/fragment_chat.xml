@@ -33,7 +33,7 @@
             android:id="@+id/btn_chat_voice"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@drawable/icon_chat_voice"
+            android:background="@mipmap/icon_chat_voice"
             android:layout_gravity="center_vertical"
             android:layout_margin="5dp"/>
         <EditText
@@ -45,14 +45,14 @@
             android:id="@+id/btn_chat_face"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@drawable/icon_chat_face"
+            android:background="@mipmap/icon_chat_face"
             android:layout_gravity="center_vertical"
             android:layout_margin="5dp"/>
         <ImageButton
             android:id="@+id/btn_chat_add"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@drawable/icon_chat_add"
+            android:background="@mipmap/icon_chat_add"
             android:layout_gravity="center_vertical"
             android:layout_margin="5dp"/>
 

@@ -71,9 +71,9 @@ public class ToggleView extends View implements View.OnClickListener {
      */
     private void initView() {
         backgroundBitmap = BitmapFactory.decodeResource(this.getResources(),
-                R.drawable.icon_toggle_green_oval);
+                R.mipmap.icon_toggle_green_oval);
         slideBtn = BitmapFactory.decodeResource(this.getResources(),
-                R.drawable.icon_toggle_green_circle);
+                R.mipmap.icon_toggle_green_circle);
         this.initSlidingLeft();
         paint = new Paint();
         // 打开抗锯齿
@@ -208,15 +208,15 @@ public class ToggleView extends View implements View.OnClickListener {
     public void setState(boolean isChecked) {
         if (isChecked) {
             backgroundBitmap = BitmapFactory.decodeResource(this.getResources(),
-                    R.drawable.icon_toggle_green_oval);
+                    R.mipmap.icon_toggle_green_oval);
             slideBtn = BitmapFactory.decodeResource(this.getResources(),
-                    R.drawable.icon_toggle_green_circle);
+                    R.mipmap.icon_toggle_green_circle);
             slideBtn_left = backgroundBitmap.getWidth() - slideBtn.getWidth();
         } else {
             backgroundBitmap = BitmapFactory.decodeResource(this.getResources(),
-                    R.drawable.icon_toggle_gray_oval);
+                    R.mipmap.icon_toggle_gray_oval);
             slideBtn = BitmapFactory.decodeResource(this.getResources(),
-                    R.drawable.icon_toggle_gray_circle);
+                    R.mipmap.icon_toggle_gray_circle);
             slideBtn_left = 0;
         }
         flushView();

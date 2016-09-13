@@ -29,25 +29,25 @@
         <RadioButton
             android:id="@+id/rb_item_device_list"
             style="@style/tab_menu_item"
-            android:drawableTop="@drawable/icon_tab_item_devicelist"
+            android:drawableTop="@mipmap/icon_tab_item_devicelist"
             android:text="@string/tab_item_devicelist" />
 
         <RadioButton
             android:id="@+id/rb_item_contact"
             style="@style/tab_menu_item"
-            android:drawableTop="@drawable/icon_tab_item_contact"
+            android:drawableTop="@mipmap/icon_tab_item_contact"
             android:text="@string/tab_item_contact" />
 
         <RadioButton
             android:id="@+id/rb_item_transport"
             style="@style/tab_menu_item"
-            android:drawableTop="@drawable/icon_tab_item_transport"
+            android:drawableTop="@mipmap/icon_tab_item_transport"
             android:text="@string/tab_item_transport" />
 
         <RadioButton
             android:id="@+id/rb_item_more"
             style="@style/tab_menu_item"
-            android:drawableTop="@drawable/icon_tab_item_more"
+            android:drawableTop="@mipmap/icon_tab_item_more"
             android:text="@string/tab_item_more" />
 
     </RadioGroup>

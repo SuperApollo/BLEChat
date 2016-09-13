@@ -49,7 +49,7 @@ public class ItemView extends LinearLayout {
         tv.setGravity(Gravity.CENTER_VERTICAL);
         setText("我的消息");
         setTextColor(ResUtils.getColor(R.color.black_5a5));
-        setImg(ResUtils.getDrawable(R.drawable.arrow_right));
+        setImg(ResUtils.getDrawable(R.mipmap.arrow_right));
         this.addView(view);
     }
 

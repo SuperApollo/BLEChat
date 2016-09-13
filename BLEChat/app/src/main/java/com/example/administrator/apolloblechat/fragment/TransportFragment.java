@@ -17,14 +17,14 @@ public class TransportFragment extends BaseFragment {
     @Override
     protected void initView(View view) {
 
-        setItemClick(view, R.id.item_transport_outbox, R.drawable.icon_item_trans_outbox, "发送", new View.OnClickListener() {
+        setItemClick(view, R.id.item_transport_outbox, R.mipmap.icon_item_trans_outbox, "发送", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mToastUtil.toaster("发送");
             }
         }, true, false);
 
-        setItemClick(view, R.id.item_transport_inbox, R.drawable.icon_item_trans_inbox, "接收", new View.OnClickListener() {
+        setItemClick(view, R.id.item_transport_inbox, R.mipmap.icon_item_trans_inbox, "接收", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mToastUtil.toaster("接收");

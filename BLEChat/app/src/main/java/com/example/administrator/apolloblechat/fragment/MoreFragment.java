@@ -40,21 +40,21 @@ public class MoreFragment extends BaseFragment {
             }
         });
 
-        setItemClick(view, R.id.item_more_mine, R.drawable.icon_item_more_mine, "我的", new View.OnClickListener() {
+        setItemClick(view, R.id.item_more_mine, R.mipmap.icon_item_more_mine, "我的", new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 mToastUtil.toaster("我的");
             }
         }, true, false);
-        setItemClick(view, R.id.item_more_setting, R.drawable.icon_item_more_setting, "设置", new View.OnClickListener() {
+        setItemClick(view, R.id.item_more_setting, R.mipmap.icon_item_more_setting, "设置", new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 mToastUtil.toaster("设置");
             }
         }, true, false);
-        setItemClick(view, R.id.item_more_about, R.drawable.icon_item_more_about, "关于", new View.OnClickListener() {
+        setItemClick(view, R.id.item_more_about, R.mipmap.icon_item_more_about, "关于", new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {

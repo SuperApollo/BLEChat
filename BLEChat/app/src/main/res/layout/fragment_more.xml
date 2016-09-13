@@ -34,7 +34,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/icon_item_more_flash" />
+            android:background="@mipmap/icon_item_more_flash" />
 
         <TextView
             android:id="@+id/tv_item_more_flash"
