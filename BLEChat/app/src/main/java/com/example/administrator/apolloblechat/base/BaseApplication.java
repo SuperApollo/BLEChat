@@ -22,7 +22,7 @@ public class BaseApplication extends Application {
         ResUtils.updateContext(mContext);
     }
 
-    public static Context getmContext() {
+    public static Context getContext() {
         return mContext;
     }
 }

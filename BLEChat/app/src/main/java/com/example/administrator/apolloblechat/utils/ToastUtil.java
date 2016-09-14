@@ -28,10 +28,10 @@ public class ToastUtil {
 
     public static void toaster(String msg) {
         if (mToast == null) {
-            mToast = Toast.makeText(BaseApplication.getmContext(), msg, Toast.LENGTH_SHORT);
+            mToast = Toast.makeText(BaseApplication.getContext(), msg, Toast.LENGTH_SHORT);
         } else {
             mToast.cancel();
-            mToast = Toast.makeText(BaseApplication.getmContext(), msg, Toast.LENGTH_SHORT);
+            mToast = Toast.makeText(BaseApplication.getContext(), msg, Toast.LENGTH_SHORT);
         }
         mToast.show();
     }
