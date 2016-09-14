@@ -10,6 +10,7 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+   <!-- 底部导航栏-->
     <style name="tab_menu_item">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
@@ -20,6 +21,20 @@
         <item name="android:paddingTop">3dp</item>
         <item name="android:textColor">@color/tab_item_textcolor_selected</item>
         <item name="android:textSize">16sp</item>
+    </style>
+
+    <!-- 内容提示对话框 -->
+    <style name="MyDialogStyle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <!-- 边框 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">false</item>
+        <!-- 半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
 </resources>
