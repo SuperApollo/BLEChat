@@ -1,6 +1,7 @@
 package com.example.administrator.apolloblechat.fragment;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.ActionMode;
 import android.view.KeyEvent;
 import android.view.View;
@@ -13,10 +14,13 @@ import android.widget.TextView;
 import com.example.administrator.apolloblechat.R;
 import com.example.administrator.apolloblechat.adapter.ChatAdapter;
 import com.example.administrator.apolloblechat.bean.ChatBean;
+import com.example.administrator.apolloblechat.constant.AppConfig;
 import com.example.administrator.apolloblechat.utils.FragmentUtils;
+import com.example.administrator.apolloblechat.utils.SharedPreferencesUtils;
 import com.example.administrator.apolloblechat.utils.TimeUtils;
 import com.example.administrator.apolloblechat.widgets.MyTittleBar;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,6 +88,13 @@ public class ChatFragment extends BaseFragment {
         chatAdapter.notifyDataSetChanged();
         lv_chatlist.setSelection(dataList.size() - 1);
 
+        try {
+            SharedPreferencesUtils.putObject(AppConfig.CHATBEN_NAME, sendBean);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.i("ChatFragment", "存储发送消息对象失败================");
+        }
+
     }
 
 
@@ -99,6 +110,15 @@ public class ChatFragment extends BaseFragment {
                 chatBean = new ChatBean("2016年9月2日10:08:50", iconTo, "黄蓉", "靖哥哥，你的降龙十八掌练得怎么样了？", false);
             }
             chatBeans.add(chatBean);
+        }
+
+        try {
+            ChatBean savedBean = SharedPreferencesUtils.getObject(AppConfig.CHATBEN_NAME);
+            if (savedBean != null)
+                chatBeans.add(savedBean);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.i("ChatFragment", "读取存储聊天信息对象失败==========");
         }
 
         return chatBeans;

@@ -1,9 +1,11 @@
 package com.example.administrator.apolloblechat.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2016/9/2.
  */
-public class ChatBean {
+public class ChatBean implements Serializable {
     private String time;
     private int icon;
     private String name;

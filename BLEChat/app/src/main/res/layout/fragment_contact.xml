@@ -56,7 +56,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:scrollbars="none" />
+                android:scrollbars="none"
+                android:layoutAnimation="@anim/list_anim_layout_translate"
+                />
 
             <com.example.administrator.apolloblechat.widgets.SidebarView
                 android:id="@+id/sidebar_contact"
