@@ -1,6 +1,5 @@
 package com.example.administrator.apolloblechat.fragment;
 
-import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.RadioGroup;
@@ -46,6 +45,9 @@ public class ChatFragment extends BaseFragment {
         lv_chatlist = queryViewById(view, R.id.lv_chatlist);
         ChatAdapter chatAdapter = new ChatAdapter(getContext(), getData());
         lv_chatlist.setAdapter(chatAdapter);
+
+
+
     }
 
 
@@ -53,8 +55,8 @@ public class ChatFragment extends BaseFragment {
         List<ChatBean> chatBeans = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             ChatBean chatBean = null;
-            Drawable iconFrom = getResources().getDrawable(R.mipmap.icon_gj);
-            Drawable iconTo = getResources().getDrawable(R.mipmap.icon_hr);
+            int iconFrom = R.mipmap.icon_gj;
+            int iconTo = R.mipmap.icon_hr;
             if (i % 2 == 0) {
                 chatBean = new ChatBean("2016年9月2日10:04:47", iconFrom, "郭靖", "蓉儿，吃了吗？", true);
             } else {

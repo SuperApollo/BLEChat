@@ -7,12 +7,12 @@ import android.graphics.drawable.Drawable;
  */
 public class ChatBean {
     private String time;
-    private Drawable icon;
+    private int icon;
     private String name;
     private String content;
     private boolean isFrom;
 
-    public ChatBean(String time, Drawable icon, String name, String content, boolean isFrom) {
+    public ChatBean(String time, int icon, String name, String content, boolean isFrom) {
         this.time = time;
         this.icon = icon;
         this.name = name;
@@ -28,11 +28,11 @@ public class ChatBean {
         this.time = time;
     }
 
-    public Drawable getIcon() {
+    public int getIcon() {
         return icon;
     }
 
-    public void setIcon(Drawable icon) {
+    public void setIcon(int icon) {
         this.icon = icon;
     }
 

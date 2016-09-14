@@ -83,7 +83,7 @@ public class ChatAdapter extends BaseAdapter {
         }
 
         holder.holderTvTime.setText(chatBean.getTime());
-        holder.holderIvIcon.setImageDrawable(chatBean.getIcon());
+        holder.holderIvIcon.setImageDrawable(mContext.getResources().getDrawable(chatBean.getIcon()));
         holder.holderTvName.setText(chatBean.getName());
         holder.holderTvContent.setText(chatBean.getContent());
 
