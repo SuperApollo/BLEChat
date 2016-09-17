@@ -2,6 +2,7 @@ package com.example.administrator.apolloblechat.activity;
 
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -35,21 +36,20 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        init();
-        initView();
-    }
-
-    private void initView() {
+    protected void initView(View view) {
         rb_item_device_list = (RadioButton) findViewById(R.id.rb_item_device_list);
         rb_item_transport = (RadioButton) findViewById(R.id.rb_item_transport);
         rg_bottom = (RadioGroup) findViewById(R.id.rg_bottom);
 
         rg_bottom.setOnCheckedChangeListener(this);
-
-
     }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        init();
+    }
+
 
     private void init() {
         FragmentUtils.replace(this, R.id.ll_fragment_container, new DeviceListFragment());

@@ -11,13 +11,16 @@ import android.view.WindowManager;
 
 import com.example.administrator.apolloblechat.R;
 import com.example.administrator.apolloblechat.utils.SystemBarTintManager;
+import com.example.administrator.apolloblechat.utils.ToastUtil;
 
 import java.util.zip.Inflater;
 
 /**
  * Created by Administrator on 2016/8/23.
  */
-public abstract class BaseActivity extends FragmentActivity {
+public abstract class BaseActivity extends FragmentActivity implements View.OnClickListener {
+
+    protected ToastUtil mToastUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,7 @@ public abstract class BaseActivity extends FragmentActivity {
         View view = getLayoutInflater().inflate(getContentViewId(),null);
         setContentView(view);
         initSystemBar(this);
+        mToastUtil = ToastUtil.getInstance();
     }
 
     protected abstract int getContentViewId();
@@ -54,4 +58,23 @@ public abstract class BaseActivity extends FragmentActivity {
         win.setAttributes(winParams);
     }
 
+    protected abstract void initView(View view);
+
+    protected <T extends View> T queryViewById(View parentView, int id) {
+        return (T) parentView.findViewById(id);
+    }
+
+    protected <T extends View> T queryViewById(View parentView, int id, boolean onClickListener) {
+        T view = (T) parentView.findViewById(id);
+        if (onClickListener) {
+            view.setOnClickListener(this);
+        }
+        return view;
+    }
+
+
+    @Override
+    public void onClick(View view) {
+
+    }
 }
