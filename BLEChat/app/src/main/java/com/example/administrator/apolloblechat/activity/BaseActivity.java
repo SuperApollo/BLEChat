@@ -30,6 +30,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         setContentView(view);
         initSystemBar(this);
         mToastUtil = ToastUtil.getInstance();
+        initView(view);
     }
 
     protected abstract int getContentViewId();

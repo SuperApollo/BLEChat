@@ -13,6 +13,12 @@ public class AppConfig {
      * 聊天信息对象名称
      */
     public static final String CHATBEN_NAME = "chatben_name";
-
-
+    //用户名
+    public static final String USER_NAME = "user_name";
+    //密码
+    public static final String PASSWORD = "password";
+    //登录状态
+    public static final String IS_LOGIN = "is_login";
+    //记住用户
+    public static final String REMEMBER_USER = "remember_user";
 }

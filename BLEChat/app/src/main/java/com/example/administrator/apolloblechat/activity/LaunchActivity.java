@@ -5,10 +5,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 
 import com.example.administrator.apolloblechat.R;
+import com.example.administrator.apolloblechat.constant.AppConfig;
+import com.example.administrator.apolloblechat.utils.SharedPreferencesUtils;
 import com.example.administrator.apolloblechat.utils.ToastUtil;
 
 /**
@@ -24,10 +30,15 @@ public class LaunchActivity extends Activity implements View.OnClickListener {
     private Button btn_register;
     private Button btn_login;
     private ToastUtil mToastUtil;
+    private String usr_name;
+    private String pass_word;
+    private CheckBox cb_remember;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,  WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_launch);
         mToastUtil = ToastUtil.getInstance();
         initView();
@@ -38,17 +49,40 @@ public class LaunchActivity extends Activity implements View.OnClickListener {
         et_password = (EditText) findViewById(R.id.et_password);
         btn_register = (Button) findViewById(R.id.btn_register);
         btn_login = (Button) findViewById(R.id.btn_login);
+        cb_remember = (CheckBox) findViewById(R.id.cb_remember);
 
         btn_login.setOnClickListener(this);
+        if (SharedPreferencesUtils.getBoolean(AppConfig.REMEMBER_USER, false)) {
+            cb_remember.setChecked(true);
+        }
+        if (cb_remember.isChecked()) {
+            usr_name = SharedPreferencesUtils.getString(AppConfig.USER_NAME);
+            pass_word = SharedPreferencesUtils.getString(AppConfig.PASSWORD);
+            if (!TextUtils.isEmpty(usr_name) && !TextUtils.isEmpty(pass_word)) {
+                et_username.setText(usr_name);
+                et_password.setText(pass_word);
+            }
+        }
+        cb_remember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    SharedPreferencesUtils.putBoolean(AppConfig.REMEMBER_USER, true);
+                } else {
+                    SharedPreferencesUtils.putBoolean(AppConfig.REMEMBER_USER, false);
+                }
+
+            }
+        });
+
     }
 
     private int checkLogin() {
         int flag = LOGIN_SUCCESS;
-        String usr_name = et_username.getText().toString();
-        String pass_word = et_password.getText().toString();
+        usr_name = et_username.getText().toString();
+        pass_word = et_password.getText().toString();
         if (!TextUtils.equals("apollo", usr_name)) {
             flag = USR_NAME_ERROR;
-
         }
 
         if (!TextUtils.equals("123456", pass_word)) {
@@ -72,6 +106,10 @@ public class LaunchActivity extends Activity implements View.OnClickListener {
                         mToastUtil.toaster("密码错误");
                         break;
                     case LOGIN_SUCCESS:
+                        mToastUtil.toaster("登录成功");
+                        SharedPreferencesUtils.putString(AppConfig.USER_NAME, usr_name);
+                        SharedPreferencesUtils.putString(AppConfig.PASSWORD, pass_word);
+                        SharedPreferencesUtils.putBoolean(AppConfig.IS_LOGIN, true);
                         Intent intent = new Intent(LaunchActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();

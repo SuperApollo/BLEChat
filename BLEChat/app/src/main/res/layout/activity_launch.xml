@@ -12,7 +12,8 @@
         android:layout_margin="20dp"
         android:background="@drawable/bg_edittext"
         android:hint="请输入账号"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:singleLine="true"/>
 
     <EditText
         android:id="@+id/et_password"
@@ -23,7 +24,8 @@
         android:background="@drawable/bg_edittext"
         android:hint="请输入密码"
         android:inputType="textPassword"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:singleLine="true"/>
 
     <CheckBox
         android:id="@+id/cb_remember"

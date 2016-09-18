@@ -7,11 +7,13 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.example.administrator.apolloblechat.R;
+import com.example.administrator.apolloblechat.constant.AppConfig;
 import com.example.administrator.apolloblechat.fragment.ContactFragment;
 import com.example.administrator.apolloblechat.fragment.DeviceListFragment;
 import com.example.administrator.apolloblechat.fragment.MoreFragment;
 import com.example.administrator.apolloblechat.fragment.TransportFragment;
 import com.example.administrator.apolloblechat.utils.FragmentUtils;
+import com.example.administrator.apolloblechat.utils.SharedPreferencesUtils;
 import com.example.administrator.apolloblechat.utils.ToastUtil;
 
 /**
@@ -19,9 +21,6 @@ import com.example.administrator.apolloblechat.utils.ToastUtil;
  */
 public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
 
-    private RadioButton rb_item_device_list;
-    private RadioButton rb_item_chat;
-    private RadioButton rb_item_transport;
     private RadioGroup rg_bottom;
     private long mExitTime;
     private static final int FIRST = 10086;
@@ -37,10 +36,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     @Override
     protected void initView(View view) {
-        rb_item_device_list = (RadioButton) findViewById(R.id.rb_item_device_list);
-        rb_item_transport = (RadioButton) findViewById(R.id.rb_item_transport);
-        rg_bottom = (RadioGroup) findViewById(R.id.rg_bottom);
-
+        rg_bottom = queryViewById(view, R.id.rg_bottom);
         rg_bottom.setOnCheckedChangeListener(this);
     }
 
@@ -108,6 +104,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 ToastUtil.toaster("再按一次退出程序");
                 mExitTime = System.currentTimeMillis();
             } else {
+                SharedPreferencesUtils.putBoolean(AppConfig.IS_LOGIN,false);
                 finish();
             }
             return true;
