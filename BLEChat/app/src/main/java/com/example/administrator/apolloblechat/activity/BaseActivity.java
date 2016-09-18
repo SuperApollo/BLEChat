@@ -1,6 +1,7 @@
 package com.example.administrator.apolloblechat.activity;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -12,6 +13,7 @@ import android.view.WindowManager;
 import com.example.administrator.apolloblechat.R;
 import com.example.administrator.apolloblechat.utils.SystemBarTintManager;
 import com.example.administrator.apolloblechat.utils.ToastUtil;
+import com.example.administrator.apolloblechat.widgets.CustomProgressView;
 
 import java.util.zip.Inflater;
 
@@ -21,12 +23,13 @@ import java.util.zip.Inflater;
 public abstract class BaseActivity extends FragmentActivity implements View.OnClickListener {
 
     protected ToastUtil mToastUtil;
+    private CustomProgressView customProgressView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        View view = getLayoutInflater().inflate(getContentViewId(),null);
+        View view = getLayoutInflater().inflate(getContentViewId(), null);
         setContentView(view);
         initSystemBar(this);
         mToastUtil = ToastUtil.getInstance();
@@ -76,6 +79,32 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
 
     @Override
     public void onClick(View view) {
+
+    }
+
+    //显示进度条
+    public void showProgress() {
+        if (customProgressView == null) {
+            customProgressView = new CustomProgressView(this)
+                    .setCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public void onCancel(DialogInterface dialog) {
+                            customProgressViewCancel();
+                        }
+                    });
+        }
+        customProgressView.showProgressDialog();
+    }
+
+    //清理進度條
+    public void clearProgress() {
+        if (customProgressView != null) {
+            customProgressView.dissDialog();
+            customProgressView = null;
+        }
+    }
+
+    public void customProgressViewCancel() {
 
     }
 }

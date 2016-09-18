@@ -77,6 +77,12 @@ public class LaunchActivity extends BaseActivity {
 
 
     private int checkLogin() {
+        showProgress();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         int flag = LOGIN_SUCCESS;
         usr_name = et_username.getText().toString();
         pass_word = et_password.getText().toString();
@@ -105,6 +111,7 @@ public class LaunchActivity extends BaseActivity {
                         mToastUtil.toaster("密码错误");
                         break;
                     case LOGIN_SUCCESS:
+                        clearProgress();
                         mToastUtil.toaster("登录成功");
                         SharedPreferencesUtils.putString(AppConfig.USER_NAME, usr_name);
                         SharedPreferencesUtils.putString(AppConfig.PASSWORD, pass_word);
