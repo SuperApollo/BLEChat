@@ -1,12 +1,9 @@
 package com.example.administrator.apolloblechat.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -20,7 +17,7 @@ import com.example.administrator.apolloblechat.utils.ToastUtil;
 /**
  * Created by wangpengbo on 16/9/17.
  */
-public class LaunchActivity extends Activity implements View.OnClickListener {
+public class LaunchActivity extends BaseActivity {
 
     private static final int USR_NAME_ERROR = 0x000001;
     private static final int PASS_WORD_ERROR = 0x000002;
@@ -37,14 +34,16 @@ public class LaunchActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,  WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_launch);
         mToastUtil = ToastUtil.getInstance();
-        initView();
     }
 
-    private void initView() {
+    @Override
+    protected int getContentViewId() {
+        return R.layout.activity_launch;
+    }
+
+    @Override
+    protected void initView(View view) {
         et_username = (EditText) findViewById(R.id.et_username);
         et_password = (EditText) findViewById(R.id.et_password);
         btn_register = (Button) findViewById(R.id.btn_register);
@@ -74,8 +73,8 @@ public class LaunchActivity extends Activity implements View.OnClickListener {
 
             }
         });
-
     }
+
 
     private int checkLogin() {
         int flag = LOGIN_SUCCESS;
