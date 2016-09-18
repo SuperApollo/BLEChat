@@ -48,7 +48,6 @@ public class DeviceListFragment extends BaseFragment {
             String id = "10086" + i;
             DeviceBean bean = new DeviceBean(icon, name, id);
             beans.add(bean);
-
         }
 
         return beans;
