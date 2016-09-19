@@ -1,9 +1,11 @@
 package com.example.administrator.apolloblechat.widgets;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
@@ -22,14 +24,23 @@ public class CustomProgressView {
     private CustomProgress customProgress;
     private TextView tvLoadMsg;
     private ImageView imgProgress;
+    private Context mContext;
 
     private DialogInterface.OnCancelListener cancelListener;
 
     private int timeout = 0;
+    private Handler mHandler;
 
 
     public CustomProgressView(Context context) {
+        this.mContext = context;
         customProgress = new CustomProgress(context);
+        mHandler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                dissDialog();
+            }
+        };
     }
 
 
@@ -57,14 +68,13 @@ public class CustomProgressView {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        new Handler().postDelayed(new Runnable() {
+
+        mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 customProgress.setOnCancelListener(cancelListener);
-                dissDialog();
             }
         }, (timeout == 0) ? DAY : (timeout * 1000L));
-
 
     }
 

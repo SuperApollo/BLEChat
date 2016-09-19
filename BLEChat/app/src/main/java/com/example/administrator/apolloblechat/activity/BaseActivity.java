@@ -23,7 +23,7 @@ import java.util.zip.Inflater;
 public abstract class BaseActivity extends FragmentActivity implements View.OnClickListener {
 
     protected ToastUtil mToastUtil;
-    private CustomProgressView customProgressView;
+    protected CustomProgressView customProgressView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +83,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     }
 
     //显示进度条
-    public void showProgress() {
+    protected void showProgress() {
         if (customProgressView == null) {
             customProgressView = new CustomProgressView(this)
                     .setCancelListener(new DialogInterface.OnCancelListener() {
@@ -97,7 +97,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     }
 
     //清理進度條
-    public void clearProgress() {
+    protected void clearProgress() {
         if (customProgressView != null) {
             customProgressView.dissDialog();
             customProgressView = null;
