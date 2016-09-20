@@ -17,7 +17,7 @@ import com.example.administrator.apolloblechat.utils.ToastUtil;
 /**
  * Created by wangpengbo on 16/9/17.
  */
-public class LaunchActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity {
 
     private static final int USR_NAME_ERROR = 0x000001;
     private static final int PASS_WORD_ERROR = 0x000002;
@@ -39,7 +39,7 @@ public class LaunchActivity extends BaseActivity {
 
     @Override
     protected int getContentViewId() {
-        return R.layout.activity_launch;
+        return R.layout.activity_login;
     }
 
     @Override
@@ -110,7 +110,7 @@ public class LaunchActivity extends BaseActivity {
                         SharedPreferencesUtils.putString(AppConfig.USER_NAME, usr_name);
                         SharedPreferencesUtils.putString(AppConfig.PASSWORD, pass_word);
                         SharedPreferencesUtils.putBoolean(AppConfig.IS_LOGIN, true);
-                        Intent intent = new Intent(LaunchActivity.this, MainActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                         break;

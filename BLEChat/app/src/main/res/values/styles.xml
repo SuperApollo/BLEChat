@@ -50,4 +50,10 @@
         <item name="android:windowFrame">@null</item>
     </style>
 
+    <!--弹框进出-->
+    <style name="PopPreviewInOut">
+        <item name="android:windowEnterAnimation">@anim/pop_preview_zoom_in</item>
+        <item name="android:windowExitAnimation">@anim/pop_preview_zoom_out</item>
+    </style>
+
 </resources>

@@ -11,7 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="58dp"
         mytittlebar:mytitle="联系人"
-        mytittlebar:showbacklay="false" />
+        mytittlebar:righttext="添加"
+        mytittlebar:showbacklay="false"
+        mytittlebar:showrightlay="true" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -56,9 +58,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:scrollbars="none"
                 android:layoutAnimation="@anim/list_anim_layout_translate"
-                />
+                android:scrollbars="none" />
 
             <com.example.administrator.apolloblechat.widgets.SidebarView
                 android:id="@+id/sidebar_contact"

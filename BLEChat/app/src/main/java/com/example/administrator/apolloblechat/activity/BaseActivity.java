@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.administrator.apolloblechat.R;
+import com.example.administrator.apolloblechat.base.ActivityManager;
 import com.example.administrator.apolloblechat.utils.SystemBarTintManager;
 import com.example.administrator.apolloblechat.utils.ToastUtil;
 import com.example.administrator.apolloblechat.widgets.CustomProgressView;
@@ -34,6 +35,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         initSystemBar(this);
         mToastUtil = ToastUtil.getInstance();
         initView(view);
+        ActivityManager.getInstance().addActivity(BaseActivity.this);
     }
 
     protected abstract int getContentViewId();

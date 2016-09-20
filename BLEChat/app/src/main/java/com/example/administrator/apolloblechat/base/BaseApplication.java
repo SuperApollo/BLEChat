@@ -3,6 +3,7 @@ package com.example.administrator.apolloblechat.base;
 import android.app.Application;
 import android.content.Context;
 
+import com.example.administrator.apolloblechat.utils.CrashHandler;
 import com.example.administrator.apolloblechat.utils.ResUtils;
 
 /**
@@ -20,6 +21,16 @@ public class BaseApplication extends Application {
 
     private void init() {
         ResUtils.updateContext(mContext);
+        //初始化数据库
+        initDao();
+        //初始化错误日志记录
+        CrashHandler crashHandler = CrashHandler.getInstance();
+        crashHandler.init(getApplicationContext());
+
+    }
+
+    private void initDao() {
+
     }
 
     public static Context getContext() {

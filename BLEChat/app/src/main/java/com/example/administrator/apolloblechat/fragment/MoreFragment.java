@@ -2,17 +2,20 @@ package com.example.administrator.apolloblechat.fragment;
 
 import android.app.Dialog;
 import android.os.Build;
-import android.util.Log;
 import android.view.View;
 
 import com.example.administrator.apolloblechat.R;
+import com.example.administrator.apolloblechat.activity.LoginActivity;
+import com.example.administrator.apolloblechat.base.ActivityManager;
+import com.example.administrator.apolloblechat.base.BaseApplication;
+import com.example.administrator.apolloblechat.constant.AppConfig;
 import com.example.administrator.apolloblechat.flash.Flash;
 import com.example.administrator.apolloblechat.flash.FlashLightManager;
+import com.example.administrator.apolloblechat.utils.IntentUtils;
+import com.example.administrator.apolloblechat.utils.SharedPreferencesUtils;
 import com.example.administrator.apolloblechat.widgets.ItemView;
 import com.example.administrator.apolloblechat.widgets.MyDialog;
 import com.zcw.togglebutton.ToggleButton;
-
-import java.nio.channels.NonWritableChannelException;
 
 /**
  * Created by Administrator on 2016/9/2.
@@ -57,7 +60,7 @@ public class MoreFragment extends BaseFragment {
             public void onClick(View v) {
 
                 new MyDialog.Builder(mContext).setCancelable(true)
-                        .setMessage("进入设置？")
+                        .setMessage("进入设置")
                         .setButton1("取消", new MyDialog.OnClickListener() {
                             @Override
                             public void onClick(Dialog dialog, int which) {
@@ -75,6 +78,30 @@ public class MoreFragment extends BaseFragment {
                         .create().show();
             }
         }, true, false);
+
+        setItemClick(view, R.id.item_more_logout, R.mipmap.icon_item_more_exit, "退出登录", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new MyDialog.Builder(mContext).setCancelable(true)
+                        .setMessage("退出登录")
+                        .setButton1("取消", new MyDialog.OnClickListener() {
+                            @Override
+                            public void onClick(Dialog dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setButton2("确定", new MyDialog.OnClickListener() {
+                            @Override
+                            public void onClick(Dialog dialog, int which) {
+                                SharedPreferencesUtils.putBoolean(AppConfig.IS_LOGIN, false);
+                                IntentUtils.sendIntent(mContext, LoginActivity.class);
+                                getActivity().finish();
+                            }
+                        })
+                        .create().show();
+            }
+        }, false, false);
+
         setItemClick(view, R.id.item_more_about, R.mipmap.icon_item_more_about, "关于", new View.OnClickListener() {
 
             @Override

@@ -7,6 +7,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.example.administrator.apolloblechat.R;
+import com.example.administrator.apolloblechat.base.ActivityManager;
 import com.example.administrator.apolloblechat.constant.AppConfig;
 import com.example.administrator.apolloblechat.fragment.ContactFragment;
 import com.example.administrator.apolloblechat.fragment.DeviceListFragment;
@@ -105,7 +106,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 mExitTime = System.currentTimeMillis();
             } else {
                 SharedPreferencesUtils.putBoolean(AppConfig.IS_LOGIN,false);
-                finish();
+                ActivityManager.getInstance().exitApp();
             }
             return true;
         }

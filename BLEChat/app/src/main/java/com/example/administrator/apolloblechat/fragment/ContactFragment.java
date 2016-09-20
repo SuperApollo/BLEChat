@@ -4,16 +4,21 @@ import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.administrator.apolloblechat.R;
 import com.example.administrator.apolloblechat.adapter.ContactAdapter;
 import com.example.administrator.apolloblechat.bean.ContactBean;
 import com.example.administrator.apolloblechat.utils.FragmentUtils;
-import com.example.administrator.apolloblechat.utils.ToastUtil;
+import com.example.administrator.apolloblechat.widgets.MyTittleBar;
 import com.example.administrator.apolloblechat.widgets.SidebarView;
 import com.example.administrator.apolloblechat.widgets.XListView;
 
@@ -51,6 +56,14 @@ public class ContactFragment extends BaseFragment {
     private ContactAdapter contactAdapter;
     private char firtLetter;
     private List<ContactBean> contactBeanList;
+    private MyTittleBar title_contact;
+    private PopupWindow popAddContactView;
+    private EditText et_pop_contact_name;
+    private EditText et_pop_contact_sex;
+    private EditText et_pop_contact_phone;
+    private EditText et_pop_contact_blemac;
+    private TextView tv_pop_contact_cancel;
+    private TextView tv_pop_contact_add;
 
     @Override
     protected int getViewId() {
@@ -58,12 +71,23 @@ public class ContactFragment extends BaseFragment {
     }
 
     @Override
-    protected void initView(View view) {
+    protected void initView(final View view) {
         et_contact_search = queryViewById(view, R.id.et_contact_search);
         tv_contact_show = queryViewById(view, R.id.tv_contact_show);
         xlv_contact = queryViewById(view, R.id.xlv_contact);
         sidebar_contact = queryViewById(view, R.id.sidebar_contact);
+        title_contact = queryViewById(view, R.id.title_contact);
 
+        title_contact.setOnRightlayoutListener(new MyTittleBar.OnRightlayoutListener() {
+            @Override
+            public void onRightClick() {
+                if (popAddContactView != null && !popAddContactView.isShowing()) {
+                    popAddContactView.showAtLocation(view, Gravity.CENTER, 0, 0);
+                    backgroundAlpha(0.3f);
+                }
+
+            }
+        });
         sidebar_contact.setTextView(tv_contact_show);
         sidebar_contact.setOnLetterClickedListener(new SidebarView.OnLetterClickedListener() {
             @Override
@@ -89,7 +113,50 @@ public class ContactFragment extends BaseFragment {
         xlv_contact.setAdapter(contactAdapter);
 
         editSearch();
+        initPop();
 
+    }
+
+    /**
+     * 初始化添加联系人弹框
+     */
+    private void initPop() {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.add_contact_pop, null);
+        et_pop_contact_name = queryViewById(view, R.id.et_pop_contact_name);
+        et_pop_contact_sex = queryViewById(view, R.id.et_pop_contact_sex);
+        et_pop_contact_phone = queryViewById(view, R.id.et_pop_contact_phone);
+        et_pop_contact_blemac = queryViewById(view, R.id.et_pop_contact_blemac);
+        tv_pop_contact_cancel = queryViewById(view, R.id.tv_pop_contact_cancel);
+        tv_pop_contact_add = queryViewById(view, R.id.tv_pop_contact_add);
+
+        if (popAddContactView == null)
+            popAddContactView = new PopupWindow(view);
+        popAddContactView.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
+        popAddContactView.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+        popAddContactView.setOutsideTouchable(true);
+        popAddContactView.setFocusable(true);
+        popAddContactView.setAnimationStyle(R.style.PopPreviewInOut);
+        popAddContactView.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                backgroundAlpha(1f);
+            }
+        });
+
+        tv_pop_contact_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popAddContactView.dismiss();
+
+            }
+        });
+        tv_pop_contact_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mToastUtil.toaster("添加成功");
+                popAddContactView.dismiss();
+            }
+        });
     }
 
     /**
@@ -262,5 +329,11 @@ public class ContactFragment extends BaseFragment {
         }
 
         return contactBeans;
+    }
+
+    private void backgroundAlpha(float bgAlpha) {
+        WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
+        lp.alpha = bgAlpha;
+        getActivity().getWindow().setAttributes(lp);
     }
 }
