@@ -1,4 +1,4 @@
-package com.example.administrator.apolloblechat.activity;
+package com.example.administrator.apolloblechat.fragment;
 
 import android.view.View;
 
@@ -7,10 +7,10 @@ import com.example.administrator.apolloblechat.R;
 /**
  * Created by Administrator on 2016/9/20.
  */
-public class WelcomeActivity extends BaseActivity {
+public class WelcomeFragmentNormal extends BaseFragment {
     @Override
-    protected int getContentViewId() {
-        return R.layout.activity_welcome;
+    protected int getViewId() {
+        return R.layout.fragment_welcome_normal;
     }
 
     @Override

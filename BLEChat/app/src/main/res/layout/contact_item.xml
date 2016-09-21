@@ -26,8 +26,8 @@
             android:id="@+id/iv_contactitem_icon"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@mipmap/icon_tab_item_contact"
-            android:layout_gravity="center_vertical"/>
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/icon_tab_item_contact" />
 
         <TextView
             android:id="@+id/tv_contactitem_name"
@@ -36,6 +36,7 @@
             android:layout_gravity="center_vertical"
             android:layout_margin="10dp"
             android:text="王二小"
+            android:textColor="@color/grey"
             android:textSize="18sp" />
     </LinearLayout>
 

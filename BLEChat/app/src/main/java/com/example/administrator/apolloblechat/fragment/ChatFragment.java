@@ -2,7 +2,6 @@ package com.example.administrator.apolloblechat.fragment;
 
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.ActionMode;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -60,7 +59,7 @@ public class ChatFragment extends BaseFragment {
 
         lv_chatlist = queryViewById(view, R.id.lv_chatlist);
         dataList = getData();
-        chatAdapter = new ChatAdapter(getContext(), dataList);
+        chatAdapter = new ChatAdapter(mContext, dataList);
         lv_chatlist.setAdapter(chatAdapter);
         lv_chatlist.setSelection(dataList.size() - 1);
 

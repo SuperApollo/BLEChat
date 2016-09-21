@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.example.administrator.apolloblechat.R;
 import com.example.administrator.apolloblechat.activity.LoginActivity;
+import com.example.administrator.apolloblechat.activity.WelcomeActivity;
 import com.example.administrator.apolloblechat.base.ActivityManager;
 import com.example.administrator.apolloblechat.base.BaseApplication;
 import com.example.administrator.apolloblechat.constant.AppConfig;
@@ -59,7 +60,7 @@ public class MoreFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
 
-                new MyDialog.Builder(mContext).setCancelable(true)
+                new MyDialog.Builder(getActivity()).setCancelable(true)
                         .setMessage("进入设置")
                         .setButton1("取消", new MyDialog.OnClickListener() {
                             @Override
@@ -82,7 +83,7 @@ public class MoreFragment extends BaseFragment {
         setItemClick(view, R.id.item_more_logout, R.mipmap.icon_item_more_exit, "退出登录", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new MyDialog.Builder(mContext).setCancelable(true)
+                new MyDialog.Builder(getActivity()).setCancelable(true)
                         .setMessage("退出登录")
                         .setButton1("取消", new MyDialog.OnClickListener() {
                             @Override
@@ -94,7 +95,7 @@ public class MoreFragment extends BaseFragment {
                             @Override
                             public void onClick(Dialog dialog, int which) {
                                 SharedPreferencesUtils.putBoolean(AppConfig.IS_LOGIN, false);
-                                IntentUtils.sendIntent(mContext, LoginActivity.class);
+                                IntentUtils.sendIntent(getActivity(), LoginActivity.class);
                                 getActivity().finish();
                             }
                         })
@@ -107,6 +108,7 @@ public class MoreFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 mToastUtil.toaster("关于");
+                IntentUtils.sendIntent(getActivity(), WelcomeActivity.class);
             }
         }, false, false);
 
@@ -117,7 +119,7 @@ public class MoreFragment extends BaseFragment {
 
         mUpper = isVersion21Upper();
         if (mUpper) {
-            mFlashLightManager = new FlashLightManager(getContext());
+            mFlashLightManager = new FlashLightManager(mContext);
         } else {
             mFlash = Flash.getInstance();
             mFlash.open();

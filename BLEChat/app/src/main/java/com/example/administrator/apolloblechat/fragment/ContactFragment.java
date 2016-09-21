@@ -109,7 +109,7 @@ public class ContactFragment extends BaseFragment {
 
         names = name.split(" ");
         contactBeanList = getData();
-        contactAdapter = new ContactAdapter(getContext(), contactBeanList);
+        contactAdapter = new ContactAdapter(mContext, contactBeanList);
         xlv_contact.setAdapter(contactAdapter);
 
         editSearch();

@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.administrator.apolloblechat.R;
+import com.example.administrator.apolloblechat.base.BaseApplication;
 import com.example.administrator.apolloblechat.utils.ToastUtil;
 
 /**
@@ -21,7 +21,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mContext = getContext();
+        mContext = BaseApplication.getContext();
         mToastUtil = ToastUtil.getInstance();
     }
 
@@ -40,6 +40,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     }
 
     protected abstract int getViewId();
+
     protected abstract void initView(View view);
 
     protected <T extends View> T queryViewById(View parentView, int id) {

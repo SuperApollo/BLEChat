@@ -2,8 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/icon_bg_road"
-    android:fitsSystemWindows="true"
     android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/fl_container_welcome_first_time"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>
