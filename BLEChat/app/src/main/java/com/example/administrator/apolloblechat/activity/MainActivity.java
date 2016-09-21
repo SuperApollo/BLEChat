@@ -36,6 +36,16 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     }
 
     @Override
+    protected boolean fullScreen() {
+        return false;
+    }
+
+    @Override
+    protected boolean changeSystemBar() {
+        return true;
+    }
+
+    @Override
     protected void initView(View view) {
         rg_bottom = queryViewById(view, R.id.rg_bottom);
         rg_bottom.setOnCheckedChangeListener(this);
@@ -105,7 +115,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 ToastUtil.toaster("再按一次退出程序");
                 mExitTime = System.currentTimeMillis();
             } else {
-                SharedPreferencesUtils.putBoolean(AppConfig.IS_LOGIN,false);
+                SharedPreferencesUtils.putBoolean(AppConfig.IS_LOGIN, false);
                 ActivityManager.getInstance().exitApp();
             }
             return true;

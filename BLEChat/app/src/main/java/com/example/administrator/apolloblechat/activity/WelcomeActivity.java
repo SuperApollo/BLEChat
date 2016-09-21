@@ -6,6 +6,7 @@ import android.widget.FrameLayout;
 import com.example.administrator.apolloblechat.R;
 import com.example.administrator.apolloblechat.constant.AppConfig;
 import com.example.administrator.apolloblechat.fragment.WelcomeFragmentFirstTime;
+import com.example.administrator.apolloblechat.fragment.WelcomeFragmentNormal;
 import com.example.administrator.apolloblechat.utils.FragmentUtils;
 import com.example.administrator.apolloblechat.utils.IntentUtils;
 import com.example.administrator.apolloblechat.utils.SharedPreferencesUtils;
@@ -17,9 +18,20 @@ public class WelcomeActivity extends BaseActivity {
 
     private FrameLayout container_welcome_activity;
 
+
     @Override
     protected int getContentViewId() {
         return R.layout.activity_welcome;
+    }
+
+    @Override
+    protected boolean fullScreen() {
+        return true;
+    }
+
+    @Override
+    protected boolean changeSystemBar() {
+        return false;
     }
 
     @Override
@@ -34,12 +46,7 @@ public class WelcomeActivity extends BaseActivity {
             FragmentUtils.replace(WelcomeActivity.this, R.id.container_welcome_activity, new WelcomeFragmentFirstTime());
             SharedPreferencesUtils.putBoolean(AppConfig.FIRST_RUN, false);
         } else {
-            boolean isLogin = SharedPreferencesUtils.getBoolean(AppConfig.IS_LOGIN,false);
-            if (isLogin){
-                IntentUtils.sendIntent(this,MainActivity.class);
-            }else {
-                IntentUtils.sendIntent(this,LoginActivity.class);
-            }
+            FragmentUtils.replace(WelcomeActivity.this,R.id.container_welcome_activity,new WelcomeFragmentNormal());
         }
 
     }

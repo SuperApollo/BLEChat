@@ -30,15 +30,33 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        if (fullScreen()) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }
         View view = getLayoutInflater().inflate(getContentViewId(), null);
         setContentView(view);
-        initSystemBar(this);
+        if (changeSystemBar())
+            initSystemBar(this);
         mToastUtil = ToastUtil.getInstance();
         initView(view);
         ActivityManager.getInstance().addActivity(BaseActivity.this);
     }
 
     protected abstract int getContentViewId();
+
+    /**
+     * 是否全屏
+     *
+     * @return
+     */
+    protected abstract boolean fullScreen();
+
+    /**
+     * 是否沉浸式状态栏
+     * @return
+     */
+    protected abstract boolean changeSystemBar();
 
     /****
      * 初始化系统标题栏  统一样式

@@ -43,6 +43,16 @@ public class LoginActivity extends BaseActivity {
     }
 
     @Override
+    protected boolean fullScreen() {
+        return true;
+    }
+
+    @Override
+    protected boolean changeSystemBar() {
+        return false;
+    }
+
+    @Override
     protected void initView(View view) {
         et_username = (EditText) findViewById(R.id.et_username);
         et_password = (EditText) findViewById(R.id.et_password);
@@ -90,7 +100,6 @@ public class LoginActivity extends BaseActivity {
         }
 
         return flag;
-
     }
 
     @Override
