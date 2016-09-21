@@ -114,7 +114,6 @@ public class ContactFragment extends BaseFragment {
 
         editSearch();
         initPop();
-
     }
 
     /**

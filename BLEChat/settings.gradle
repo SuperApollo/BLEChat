@@ -1,1 +1,1 @@
-include ':app', ':togglebutton-library'
+include ':app', ':togglebutton-library', ':greendaogenerator'
