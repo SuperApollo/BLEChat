@@ -24,20 +24,13 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="姓名"
-            android:textSize="16sp" />
+            style="@style/AddTvSmall"
+            android:text="姓名" />
 
         <EditText
             android:id="@+id/et_pop_contact_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/transparent"
-            android:hint="王二小"
-            android:textSize="16sp" />
+            style="@style/AddEt"
+            android:hint="王二小" />
     </LinearLayout>
 
     <include layout="@layout/line_view_gray" />
@@ -49,21 +42,13 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="性别"
-            android:textSize="16sp" />
+            style="@style/AddTvSmall"
+            android:text="性别" />
 
         <EditText
             android:id="@+id/et_pop_contact_sex"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/transparent"
-            android:hint="男"
-            android:singleLine="true"
-            android:textSize="16sp" />
+            style="@style/AddEt"
+            android:hint="男" />
     </LinearLayout>
 
     <include layout="@layout/line_view_gray" />
@@ -75,21 +60,31 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="电话"
-            android:textSize="16sp" />
+            style="@style/AddTvSmall"
+            android:text="年龄" />
+
+        <EditText
+            android:id="@+id/et_pop_contact_age"
+            style="@style/AddEt"
+            android:hint="18" />
+    </LinearLayout>
+
+    <include layout="@layout/line_view_gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/AddTvSmall"
+            android:text="电话" />
 
         <EditText
             android:id="@+id/et_pop_contact_phone"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/transparent"
-            android:hint="000000"
-            android:singleLine="true"
-            android:textSize="16sp" />
+            style="@style/AddEt"
+            android:hint="000000" />
     </LinearLayout>
 
     <include layout="@layout/line_view_gray" />
@@ -101,21 +96,13 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="蓝牙MAC"
-            android:textSize="16sp" />
+            style="@style/AddTvSmall"
+            android:text="蓝牙MAC" />
 
         <EditText
             android:id="@+id/et_pop_contact_blemac"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/transparent"
-            android:hint="AA:BB:CC"
-            android:singleLine="true"
-            android:textSize="16sp" />
+            style="@style/AddEt"
+            android:hint="AA:BB:CC" />
     </LinearLayout>
 
     <include layout="@layout/line_view_gray" />
@@ -129,24 +116,14 @@
 
         <TextView
             android:id="@+id/tv_pop_contact_cancel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="取消"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            style="@style/AddTvBig"
+            android:text="取消" />
 
 
         <TextView
             android:id="@+id/tv_pop_contact_add"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="添加"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            style="@style/AddTvBig"
+            android:text="添加" />
     </LinearLayout>
 
 

@@ -115,7 +115,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 ToastUtil.toaster("再按一次退出程序");
                 mExitTime = System.currentTimeMillis();
             } else {
-                SharedPreferencesUtils.putBoolean(AppConfig.IS_LOGIN, false);
                 ActivityManager.getInstance().exitApp();
             }
             return true;
