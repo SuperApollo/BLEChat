@@ -112,6 +112,7 @@ public class LoginActivity extends BaseActivity {
                         SharedPreferencesUtils.putBoolean(AppConfig.IS_LOGIN, true);
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
+                        clearProgress();
                         finish();
                         break;
                 }

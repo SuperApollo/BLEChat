@@ -15,6 +15,6 @@ public class WelcomeFragmentFirstTime extends BaseFragment {
 
     @Override
     protected void initView(View view) {
-
+        mToastUtil.toaster("首次运行viewpager界面");
     }
 }

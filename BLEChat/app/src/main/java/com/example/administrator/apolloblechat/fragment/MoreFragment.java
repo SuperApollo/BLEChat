@@ -108,7 +108,6 @@ public class MoreFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 mToastUtil.toaster("关于");
-                IntentUtils.sendIntent(getActivity(), WelcomeActivity.class);
             }
         }, false, false);
 
