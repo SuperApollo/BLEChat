@@ -23,6 +23,7 @@ public class AppConfig {
     public static final String REMEMBER_USER = "remember_user";
     //首次运行
     public static final String FIRST_RUN = "first_run";
-
+    //数据库名称
+    public static final String DB_NAME = "db_name";
 
 }
