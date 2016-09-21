@@ -24,6 +24,6 @@ public class AppConfig {
     //首次运行
     public static final String FIRST_RUN = "first_run";
     //数据库名称
-    public static final String DB_NAME = "db_name";
+    public static final String DB_NAME = "apollo_chat.db";
 
 }

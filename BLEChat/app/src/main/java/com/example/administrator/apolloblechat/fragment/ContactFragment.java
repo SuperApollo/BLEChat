@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,8 @@ import com.example.administrator.apolloblechat.utils.FragmentUtils;
 import com.example.administrator.apolloblechat.widgets.MyTittleBar;
 import com.example.administrator.apolloblechat.widgets.SidebarView;
 import com.example.administrator.apolloblechat.widgets.XListView;
+import com.example.administrator.greendao.bean.Contact;
+import com.example.administrator.greendao.daohelper.ContactDaoHelper;
 
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
@@ -64,6 +67,8 @@ public class ContactFragment extends BaseFragment {
     private EditText et_pop_contact_blemac;
     private TextView tv_pop_contact_cancel;
     private TextView tv_pop_contact_add;
+    private EditText et_pop_contact_age;
+    private final String TAG = this.getClass().getSimpleName();
 
     @Override
     protected int getViewId() {
@@ -114,6 +119,19 @@ public class ContactFragment extends BaseFragment {
 
         editSearch();
         initPop();
+        testReadDao();
+    }
+
+    private void testReadDao() {
+        ContactDaoHelper helper = ContactDaoHelper.getContactDaoHelper();
+        if (null != helper) {
+            List<Contact> allContacts = helper.getAllContacts();
+            if (null != allContacts && allContacts.size() > 0)
+                for (Contact contact : allContacts) {
+                    Log.i(TAG, "contact: " + contact.getName()+contact.getSex()+contact.getAge()+contact.getPhoe()+
+                    contact.getBle());
+                }
+        }
     }
 
     /**
@@ -123,6 +141,7 @@ public class ContactFragment extends BaseFragment {
         View view = LayoutInflater.from(mContext).inflate(R.layout.add_contact_pop, null);
         et_pop_contact_name = queryViewById(view, R.id.et_pop_contact_name);
         et_pop_contact_sex = queryViewById(view, R.id.et_pop_contact_sex);
+        et_pop_contact_age = queryViewById(view, R.id.et_pop_contact_age);
         et_pop_contact_phone = queryViewById(view, R.id.et_pop_contact_phone);
         et_pop_contact_blemac = queryViewById(view, R.id.et_pop_contact_blemac);
         tv_pop_contact_cancel = queryViewById(view, R.id.tv_pop_contact_cancel);
@@ -152,6 +171,22 @@ public class ContactFragment extends BaseFragment {
         tv_pop_contact_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Contact contact = new Contact();
+
+                String name = et_pop_contact_name.getText().toString().trim();
+                String sex = et_pop_contact_sex.getText().toString().trim();
+                String age = et_pop_contact_age.getText().toString().trim();
+                String phone = et_pop_contact_phone.getText().toString().trim();
+                String ble = et_pop_contact_blemac.getText().toString().trim();
+                contact.setName(name);
+                contact.setSex(sex);
+                contact.setAge(age);
+                contact.setPhoe(phone);
+                contact.setBle(ble);
+
+                ContactDaoHelper helper = ContactDaoHelper.getContactDaoHelper();
+                if (null != helper)
+                    helper.insertOrReplace(contact);
                 mToastUtil.toaster("添加成功");
                 popAddContactView.dismiss();
             }
