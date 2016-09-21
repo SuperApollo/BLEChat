@@ -330,11 +330,6 @@ public class ContactFragment extends BaseFragment {
                 firtLetter = '#';
             }
 
-            try {
-
-            } catch (Exception e) {
-
-            }
 
             contactBean = new ContactBean(icon, names[i], "10086" + i, firtLetter + "");
 
