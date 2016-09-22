@@ -3,7 +3,6 @@ package com.example.administrator.apolloblechat.flash;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.SurfaceTexture;
-import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraDevice;
@@ -86,15 +85,15 @@ public class FlashLightManager {
     }
 
 
-    private void openCameraDevice() throws CameraAccessException {
+    private void openCameraDevice()  {
         try {
             mCameraManager.openCamera(getCameraId(), mStateCallback, mHandler);
-        } catch (CameraAccessException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void openCameraSession() throws CameraAccessException {
+    private void openCameraSession() throws Exception {
         mSurfaceTexture = new SurfaceTexture(0, false);
         Size size = getSmallestSize(mCameraDevice.getId());
         mSurfaceTexture.setDefaultBufferSize(size.getWidth(), size.getHeight());
@@ -104,7 +103,7 @@ public class FlashLightManager {
         mCameraDevice.createCaptureSession(outputs, mSessionStateCallback, mHandler);
     }
 
-    private Size getSmallestSize(String cameraId) throws CameraAccessException {
+    private Size getSmallestSize(String cameraId) throws Exception {
         Size[] outputSizes = mCameraManager.getCameraCharacteristics(cameraId)
                 .get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP)
                 .getOutputSizes(SurfaceTexture.class);
@@ -130,7 +129,7 @@ public class FlashLightManager {
      * @author Richard
      * @获得有FLAHS功能的Camera ID。
      */
-    private String getCameraId() throws CameraAccessException {
+    private String getCameraId() throws Exception {
         String[] ids = mCameraManager.getCameraIdList();
         for (String id : ids) {
             CameraCharacteristics c = mCameraManager.getCameraCharacteristics(id);
@@ -173,7 +172,7 @@ public class FlashLightManager {
                 }
             }
 
-        } catch (CameraAccessException | IllegalStateException | UnsupportedOperationException e) {
+        } catch (Exception e) {
             showErrorMsg();
         }
     }
