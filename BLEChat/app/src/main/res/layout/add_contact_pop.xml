@@ -26,7 +26,7 @@
 
         <TextView
             style="@style/AddTvSmall"
-            android:text="姓名" />
+            android:text="姓名:" />
 
         <EditText
             android:id="@+id/et_pop_contact_name"
@@ -44,7 +44,7 @@
 
         <TextView
             style="@style/AddTvSmall"
-            android:text="性别" />
+            android:text="性别:" />
 
         <EditText
             android:id="@+id/et_pop_contact_sex"
@@ -62,7 +62,7 @@
 
         <TextView
             style="@style/AddTvSmall"
-            android:text="年龄" />
+            android:text="年龄:" />
 
         <EditText
             android:id="@+id/et_pop_contact_age"
@@ -80,7 +80,7 @@
 
         <TextView
             style="@style/AddTvSmall"
-            android:text="电话" />
+            android:text="电话:" />
 
         <EditText
             android:id="@+id/et_pop_contact_phone"
@@ -98,7 +98,7 @@
 
         <TextView
             style="@style/AddTvSmall"
-            android:text="蓝牙MAC" />
+            android:text="蓝牙MAC:" />
 
         <EditText
             android:id="@+id/et_pop_contact_blemac"
