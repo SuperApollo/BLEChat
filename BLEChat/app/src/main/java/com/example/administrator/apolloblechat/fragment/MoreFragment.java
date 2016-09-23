@@ -12,6 +12,7 @@ import com.example.administrator.apolloblechat.base.BaseApplication;
 import com.example.administrator.apolloblechat.constant.AppConfig;
 import com.example.administrator.apolloblechat.flash.Flash;
 import com.example.administrator.apolloblechat.flash.FlashLightManager;
+import com.example.administrator.apolloblechat.utils.FragmentUtils;
 import com.example.administrator.apolloblechat.utils.IntentUtils;
 import com.example.administrator.apolloblechat.utils.SharedPreferencesUtils;
 import com.example.administrator.apolloblechat.widgets.ItemView;
@@ -52,7 +53,7 @@ public class MoreFragment extends BaseFragment {
 
             @Override
             public void onClick(View v) {
-                mToastUtil.toaster("我的");
+                FragmentUtils.replace(getActivity(),R.id.ll_fragment_container,new MineFragment());
             }
         }, true, false);
         setItemClick(view, R.id.item_more_setting, R.mipmap.icon_item_more_setting, "设置", new View.OnClickListener() {
