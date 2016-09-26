@@ -36,7 +36,6 @@ public class WelcomeFragmentFirstTime extends BaseFragment {
 
     @Override
     protected void initView(View view) {
-        mToastUtil.toaster("首次运行viewpager界面");
         vp_looper = queryViewById(view, R.id.vp_looper);
         point_container = queryViewById(view, R.id.point_container);
 
@@ -89,7 +88,7 @@ public class WelcomeFragmentFirstTime extends BaseFragment {
         iv1.setImageResource(R.mipmap.icon_vp_first);
         iv2.setImageResource(R.mipmap.icon_vp_second);
         iv3.setImageResource(R.mipmap.icon_vp_third);
-        iv3.setImageResource(R.mipmap.icon_vp_fouth);
+        iv4.setImageResource(R.mipmap.icon_vp_fouth);
 
         pagerList = new ArrayList();
         pagerList.add(iv1);
