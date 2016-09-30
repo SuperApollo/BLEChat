@@ -54,34 +54,18 @@
         android:layout_marginLeft="20dp"
         android:text="记住用户"
         android:textSize="16sp"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
-    <LinearLayout
+
+    <Button
+        android:id="@+id/btn_regist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/cb_remember_reg">
-
-        <Button
-            android:id="@+id/btn_unregist"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:layout_weight="1"
-            android:background="@drawable/selector_button"
-            android:text="注销"
-            android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/btn_regist"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:layout_weight="1"
-            android:background="@drawable/selector_button"
-            android:text="注册"
-            android:textSize="20sp" />
-
-    </LinearLayout>
-
+        android:layout_below="@+id/cb_remember_reg"
+        android:layout_margin="20dp"
+        android:layout_weight="1"
+        android:background="@drawable/selector_button"
+        android:text="注册"
+        android:textSize="20sp" />
 
 </RelativeLayout>

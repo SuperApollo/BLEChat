@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.example.administrator.apolloblechat.R;
 import com.example.administrator.apolloblechat.activity.LoginActivity;
+import com.example.administrator.apolloblechat.activity.RegistActivity;
 import com.example.administrator.apolloblechat.activity.WelcomeActivity;
 import com.example.administrator.apolloblechat.base.ActivityManager;
 import com.example.administrator.apolloblechat.base.BaseApplication;
@@ -104,6 +105,29 @@ public class MoreFragment extends BaseFragment {
             }
         }, false, false);
 
+        setItemClick(view, R.id.item_more_unregist, R.mipmap.icon_item_more_exit, "注销", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new MyDialog.Builder(getActivity()).setCancelable(true)
+                        .setMessage("注销账号")
+                        .setButton1("取消", new MyDialog.OnClickListener() {
+                            @Override
+                            public void onClick(Dialog dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setButton2("确定", new MyDialog.OnClickListener() {
+                            @Override
+                            public void onClick(Dialog dialog, int which) {
+                                unregist();
+                                IntentUtils.sendIntent(getActivity(), RegistActivity.class);
+                                getActivity().finish();
+                            }
+                        })
+                        .create().show();
+            }
+        }, false, false);
+
         setItemClick(view, R.id.item_more_about, R.mipmap.icon_item_more_about, "关于", new View.OnClickListener() {
 
             @Override
@@ -175,5 +199,12 @@ public class MoreFragment extends BaseFragment {
             mFlash.close();
             mFlash = null;
         }
+    }
+
+    private void unregist() {
+        SharedPreferencesUtils.putString(AppConfig.AUTHOR_CODE, "");
+        SharedPreferencesUtils.putString(AppConfig.USER_NAME, "");
+        SharedPreferencesUtils.putString(AppConfig.PASSWORD, "");
+        mToastUtil.toaster("注销成功");
     }
 }

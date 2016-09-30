@@ -44,7 +44,7 @@ public class RegistActivity extends BaseActivity {
         et_password_reg = queryViewById(view, R.id.et_password_reg);
         et_password_confirm_reg = queryViewById(view, R.id.et_password_confirm_reg);
         queryViewById(view, R.id.btn_regist, true);
-        queryViewById(view, R.id.btn_unregist, true);
+
         et_password_confirm_reg.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -74,9 +74,6 @@ public class RegistActivity extends BaseActivity {
             case R.id.btn_regist:
                 regist();
                 break;
-            case R.id.btn_unregist:
-                unregist();
-                break;
         }
 
     }
@@ -105,11 +102,5 @@ public class RegistActivity extends BaseActivity {
         this.finish();
     }
 
-    private void unregist() {
-        SharedPreferencesUtils.putString(AppConfig.AUTHOR_CODE, "");
-        SharedPreferencesUtils.putString(AppConfig.USER_NAME, "");
-        SharedPreferencesUtils.putString(AppConfig.PASSWORD, "");
-        mToastUtil.toaster("注销成功");
-    }
 
 }

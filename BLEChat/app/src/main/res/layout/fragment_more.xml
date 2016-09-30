@@ -71,6 +71,12 @@
         android:layout_height="wrap_content" />
 
     <com.example.administrator.apolloblechat.widgets.ItemView
+        android:id="@+id/item_more_unregist"
+        layout="@layout/base_itemview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.example.administrator.apolloblechat.widgets.ItemView
         android:id="@+id/item_more_about"
         layout="@layout/base_itemview"
         android:layout_width="match_parent"
