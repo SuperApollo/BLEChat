@@ -5,6 +5,12 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <!--欢迎界面主题，为了去白屏闪-->
+    <style name="Theme.Start" parent="android:Theme">
+        <item name="android:windowBackground">@mipmap/icon_bg_road</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
     <style name="Theme.AppStartLoad" parent="AppTheme">
         <item name="android:windowBackground">@color/main_background</item>
         <item name="android:windowNoTitle">true</item>
@@ -84,12 +90,5 @@
         <item name="android:singleLine">true</item>
     </style>
 
-    <!--android:id="@+id/tv_pop_contact_add"-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_weight="1"-->
-    <!--android:gravity="center"-->
-    <!--android:text="添加"-->
-    <!--android:textSize="18sp"-->
-    <!--android:textStyle="bold"-->
+
 </resources>

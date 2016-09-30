@@ -55,7 +55,8 @@
         <activity
             android:name=".activity.WelcomeActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Start">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
