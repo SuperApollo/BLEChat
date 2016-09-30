@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:layout_weight="1"
-            android:background="@drawable/bg_edittext"
+            android:background="@drawable/selector_button"
             android:text="注册"
             android:textSize="20sp" />
 
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:layout_weight="1"
-            android:background="@drawable/bg_edittext"
+            android:background="@drawable/selector_button"
             android:text="登录"
             android:textSize="20sp" />
 
