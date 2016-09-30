@@ -11,6 +11,7 @@ import android.widget.EditText;
 
 import com.example.administrator.apolloblechat.R;
 import com.example.administrator.apolloblechat.constant.AppConfig;
+import com.example.administrator.apolloblechat.utils.IntentUtils;
 import com.example.administrator.apolloblechat.utils.SharedPreferencesUtils;
 import com.example.administrator.apolloblechat.utils.ToastUtil;
 
@@ -54,13 +55,13 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void initView(View view) {
-        et_username = (EditText) findViewById(R.id.et_username);
-        et_password = (EditText) findViewById(R.id.et_password);
-        btn_register = (Button) findViewById(R.id.btn_register);
-        btn_login = (Button) findViewById(R.id.btn_login);
-        cb_remember = (CheckBox) findViewById(R.id.cb_remember);
+        et_username = queryViewById(view, R.id.et_username);
+        et_password = queryViewById(view, R.id.et_password);
+        btn_register = queryViewById(view, R.id.btn_register);
+        btn_login = queryViewById(view, R.id.btn_login, true);
+        queryViewById(view, R.id.btn_register, true);
+        cb_remember = queryViewById(view, R.id.cb_remember);
 
-        btn_login.setOnClickListener(this);
         if (SharedPreferencesUtils.getBoolean(AppConfig.REMEMBER_USER, false)) {
             cb_remember.setChecked(true);
         }
@@ -83,6 +84,16 @@ public class LoginActivity extends BaseActivity {
 
             }
         });
+
+        checkRegist();
+    }
+
+    private void checkRegist() {
+        String author = SharedPreferencesUtils.getString(AppConfig.AUTHOR_CODE);
+        if (TextUtils.isEmpty(author)) {
+            IntentUtils.sendIntent(LoginActivity.this, RegistActivity.class);
+            this.finish();
+        }
     }
 
 
@@ -91,11 +102,11 @@ public class LoginActivity extends BaseActivity {
         int flag = LOGIN_SUCCESS;
         usr_name = et_username.getText().toString();
         pass_word = et_password.getText().toString();
-        if (!TextUtils.equals("apollo", usr_name)) {
+        if (!TextUtils.equals(SharedPreferencesUtils.getString(AppConfig.USER_NAME), usr_name)) {
             flag = USR_NAME_ERROR;
         }
-
-        if (!TextUtils.equals("123456", pass_word)) {
+        String pass = SharedPreferencesUtils.getString(AppConfig.PASSWORD);
+        if (!TextUtils.equals(pass, pass_word)) {
             flag = PASS_WORD_ERROR;
         }
 
@@ -126,6 +137,10 @@ public class LoginActivity extends BaseActivity {
                         break;
                 }
 
+                break;
+            case R.id.btn_register:
+                IntentUtils.sendIntent(LoginActivity.this, RegistActivity.class);
+                this.finish();
                 break;
         }
 
