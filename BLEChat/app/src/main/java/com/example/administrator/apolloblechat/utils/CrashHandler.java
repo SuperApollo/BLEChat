@@ -12,7 +12,6 @@ import android.os.Looper;
 import android.widget.Toast;
 
 import com.example.administrator.apolloblechat.activity.LoginActivity;
-import com.example.administrator.apolloblechat.base.ActivityManager;
 import com.example.administrator.apolloblechat.base.BaseApplication;
 
 import java.io.PrintWriter;

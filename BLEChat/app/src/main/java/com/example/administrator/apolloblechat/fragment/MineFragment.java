@@ -24,9 +24,10 @@ public class MineFragment extends BaseFragment {
         title_mine = queryViewById(view, R.id.title_mine);
         title_mine.setOnBackListener(new MyTittleBar.OnBackListener() {
             @Override
-            public void onBackClick() {
+            public void onLeftClick() {
                 FragmentUtils.replace(getActivity(),R.id.ll_fragment_container,new MoreFragment());
             }
+
         });
     }
 }

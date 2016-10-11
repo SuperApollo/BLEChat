@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--自定义标题栏-->
     <declare-styleable name="mytittlebar">
-        <attr name="mytitle" format="string" />
-        <attr name="showbacklay" format="boolean" />
+        <!--是否显示左边reletivelayout-->
+        <attr name="showleftlay" format="boolean" />
+        <!--是否显示返回箭头-->
+        <attr name="showback" format="boolean" />
+        <!--返回图标-->
         <attr name="backimg" format="reference" />
+        <!--左边文字-->
+        <attr name="lefttext" format="string" />
+        <!--标题-->
+        <attr name="mytitle" format="string" />
+        <!--是否显示右侧reletivelayout-->
         <attr name="showrightlay" format="boolean" />
+        <!--右侧文字-->
         <attr name="righttext" format="string" />
-        <attr name="righttextbg" format="reference" />
+        <!--右侧图标-->
+        <attr name="rightimg" format="reference" />
     </declare-styleable>
     <declare-styleable name="CircleImageView">
         <attr name="civ_border_width" format="dimension" />

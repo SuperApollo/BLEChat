@@ -6,10 +6,10 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:id="@+id/title_layout_backlay"
+        android:id="@+id/title_layout_leftlay"
         android:layout_width="120dp"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <ImageView
             android:id="@+id/title_layout_backimg"
@@ -18,9 +18,21 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:src="@mipmap/arrow_left" />
+            android:src="@mipmap/arrow_left"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/title_size"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/title_layout_lefttext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/title_layout_backimg"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/title_size"
+            android:visibility="visible" />
 
     </RelativeLayout>
 
@@ -38,7 +50,7 @@
         android:layout_width="120dp"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <TextView
             android:id="@+id/title_layout_righttext"
@@ -49,6 +61,19 @@
             android:layout_marginRight="10dp"
             android:textColor="#ffffff"
             android:textSize="@dimen/title_size" />
+
+        <ImageView
+            android:id="@+id/title_layout_rightimg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/title_size"
+            android:visibility="visible"
+            android:layout_marginRight="10dp"/>
+
     </RelativeLayout>
 
 </RelativeLayout>

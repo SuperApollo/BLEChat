@@ -12,7 +12,7 @@
         android:layout_height="58dp"
         mytittlebar:mytitle="联系人"
         mytittlebar:righttext="添加"
-        mytittlebar:showbacklay="false"
+        mytittlebar:showleftlay="false"
         mytittlebar:showrightlay="true" />
 
     <LinearLayout

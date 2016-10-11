@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -19,34 +18,93 @@ import com.example.administrator.apolloblechat.R;
 
 
 /**
+ * 自定义标题栏
+ * <p>
  * Created by Administrator on 2016/8/29.
  */
 public class MyTittleBar extends RelativeLayout {
 
-    private RelativeLayout backLayout;
+    //左侧箭头和文字父布局
+    private RelativeLayout leftLayout;
+    //是否显示左侧父布局
+    private Boolean isShowLeftlay = false;
+    //左侧返回箭头布局
+    private ImageView ivBack;
+    //左侧返回图标
+    private Bitmap backBitmap;
+    //是否显示返回箭头
+    private boolean isShowBack;
+    //左侧文字布局
+    private TextView tvLeft;
+    //左侧文字内容
+    private String leftContent;
+    //中间标题布局
     private TextView tvTitle;
-    private ImageView backImg;
-    private RelativeLayout rightlayout;
-    private TextView rightText;
-
+    //中间标题内容
     private String title;
-    private Bitmap bitmap;
-    private Boolean isShowBacklay = false;
-
+    //右侧父布局
+    private RelativeLayout rightlayout;
+    //是否显示右侧父布局
+    private Boolean isShowRightLay = false;
+    //右侧文字布局
+    private TextView tvRight;
+    //右侧文字内容
     private String rightContent;
+    //右侧文字布局背景
     private Bitmap rightBitmap;
-    private Boolean isShowRight = false;
 
 
     private OnBackListener onBackListener;
     private OnRightlayoutListener onRightlayoutListener;
+    private ImageView ivRight;
 
-    public RelativeLayout getBackLayout() {
-        return backLayout;
+
+    public RelativeLayout getLeftLayout() {
+        return leftLayout;
     }
 
-    public void setBackLayout(RelativeLayout backLayout) {
-        this.backLayout = backLayout;
+    public void setLeftLayout(RelativeLayout leftLayout) {
+        this.leftLayout = leftLayout;
+    }
+
+    public Boolean getShowLeftlay() {
+        return isShowLeftlay;
+    }
+
+    public void setShowLeftlay(Boolean showLeftlay) {
+        isShowLeftlay = showLeftlay;
+    }
+
+    public ImageView getIvBack() {
+        return ivBack;
+    }
+
+    public void setIvBack(ImageView ivBack) {
+        this.ivBack = ivBack;
+    }
+
+    public Bitmap getBackBitmap() {
+        return backBitmap;
+    }
+
+    public void setBackBitmap(Bitmap backBitmap) {
+        this.backBitmap = backBitmap;
+    }
+
+    public boolean isShowBack() {
+        return isShowBack;
+    }
+
+    public void setShowBack(boolean showBack) {
+        isShowBack = showBack;
+    }
+
+    public TextView getTvLeft() {
+        return tvLeft;
+    }
+
+    public void setTvLeft(TextView tvLeft) {
+        this.tvLeft = tvLeft;
     }
 
     public TextView getTvTitle() {
@@ -57,12 +115,12 @@ public class MyTittleBar extends RelativeLayout {
         this.tvTitle = tvTitle;
     }
 
-    public ImageView getBackImg() {
-        return backImg;
+    public String getTitle() {
+        return title;
     }
 
-    public void setBackImg(ImageView backImg) {
-        this.backImg = backImg;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public RelativeLayout getRightlayout() {
@@ -73,36 +131,20 @@ public class MyTittleBar extends RelativeLayout {
         this.rightlayout = rightlayout;
     }
 
-    public TextView getRightText() {
-        return rightText;
+    public Boolean getShowRightLay() {
+        return isShowRightLay;
     }
 
-    public void setRightText(TextView rightText) {
-        this.rightText = rightText;
+    public void setShowRightLay(Boolean showRightLay) {
+        isShowRightLay = showRightLay;
     }
 
-    public String getTitle() {
-        return title;
+    public TextView getTvRight() {
+        return tvRight;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Bitmap getBitmap() {
-        return bitmap;
-    }
-
-    public void setBitmap(Bitmap bitmap) {
-        this.bitmap = bitmap;
-    }
-
-    public Boolean getIsShowBacklay() {
-        return isShowBacklay;
-    }
-
-    public void setIsShowBacklay(Boolean isShowBacklay) {
-        this.isShowBacklay = isShowBacklay;
+    public void setTvRight(TextView tvRight) {
+        this.tvRight = tvRight;
     }
 
     public String getRightContent() {
@@ -121,12 +163,12 @@ public class MyTittleBar extends RelativeLayout {
         this.rightBitmap = rightBitmap;
     }
 
-    public Boolean getIsShowRight() {
-        return isShowRight;
+    public String getLeftContent() {
+        return leftContent;
     }
 
-    public void setIsShowRight(Boolean isShowRight) {
-        this.isShowRight = isShowRight;
+    public void setLeftContent(String leftContent) {
+        this.leftContent = leftContent;
     }
 
     public OnBackListener getOnBackListener() {
@@ -160,22 +202,28 @@ public class MyTittleBar extends RelativeLayout {
         for (int i = 0; i < n; i++) {
             int attr = typedArray.getIndex(i);
             switch (attr) {
+                case R.styleable.mytittlebar_showleftlay:
+                    isShowLeftlay = typedArray.getBoolean(attr, false);
+                    break;
+                case R.styleable.mytittlebar_showback:
+                    isShowBack = typedArray.getBoolean(attr, false);
+                    break;
+                case R.styleable.mytittlebar_backimg:
+                    backBitmap = BitmapFactory.decodeResource(getResources(), typedArray.getResourceId(attr, 0));
+                    break;
+                case R.styleable.mytittlebar_lefttext:
+                    leftContent = typedArray.getString(attr);
+                    break;
                 case R.styleable.mytittlebar_mytitle:
                     title = typedArray.getString(attr);
                     break;
-                case R.styleable.mytittlebar_showbacklay:
-                    isShowBacklay = typedArray.getBoolean(attr, false);
-                    break;
-                case R.styleable.mytittlebar_backimg:
-                    bitmap = BitmapFactory.decodeResource(getResources(), typedArray.getResourceId(attr, 0));
-                    break;
                 case R.styleable.mytittlebar_showrightlay:
-                    isShowRight = typedArray.getBoolean(attr, false);
+                    isShowRightLay = typedArray.getBoolean(attr, false);
                     break;
                 case R.styleable.mytittlebar_righttext:
                     rightContent = typedArray.getString(attr);
                     break;
-                case R.styleable.mytittlebar_righttextbg:
+                case R.styleable.mytittlebar_rightimg:
                     rightBitmap = BitmapFactory.decodeResource(getResources(), typedArray.getResourceId(attr, 0));
                     break;
                 default:
@@ -183,9 +231,7 @@ public class MyTittleBar extends RelativeLayout {
             }
         }
 
-
         typedArray.recycle();
-
         initView(context);
 
     }
@@ -193,34 +239,44 @@ public class MyTittleBar extends RelativeLayout {
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private void initView(final Context context) {
         View tittleView = LayoutInflater.from(context).inflate(R.layout.title_layout, this, true);
-        backLayout = (RelativeLayout) tittleView.findViewById(R.id.title_layout_backlay);
+        leftLayout = (RelativeLayout) tittleView.findViewById(R.id.title_layout_leftlay);
+        ivBack = (ImageView) tittleView.findViewById(R.id.title_layout_backimg);
+        tvLeft = (TextView) tittleView.findViewById(R.id.title_layout_lefttext);
         tvTitle = (TextView) tittleView.findViewById(R.id.title_layout_title);
-        backImg = (ImageView) tittleView.findViewById(R.id.title_layout_backimg);
         rightlayout = (RelativeLayout) tittleView.findViewById(R.id.title_layout_rightlay);
-        rightText = (TextView) tittleView.findViewById(R.id.title_layout_righttext);
+        tvRight = (TextView) tittleView.findViewById(R.id.title_layout_righttext);
+        ivRight = (ImageView) tittleView.findViewById(R.id.title_layout_rightimg);
 
         tvTitle.setText(title);
-        if (isShowBacklay) {
-            backLayout.setVisibility(VISIBLE);
-            if (bitmap != null) {
-                backImg.setImageBitmap(bitmap);
+
+        if (isShowLeftlay) {
+            leftLayout.setVisibility(VISIBLE);
+            if (isShowBack) {
+                ivBack.setVisibility(VISIBLE);
+                if (backBitmap != null) {
+                    ivBack.setImageBitmap(backBitmap);
+                }
             }
-            backLayout.setOnClickListener(new OnClickListener() {
+
+            tvLeft.setText(leftContent);
+
+            leftLayout.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (onBackListener != null) {
-                        onBackListener.onBackClick();
+                        onBackListener.onLeftClick();
                     } else {
                         ((Activity) context).finish();
                     }
                 }
             });
         }
-        if (isShowRight) {
+
+        if (isShowRightLay) {
             rightlayout.setVisibility(VISIBLE);
-            rightText.setText(rightContent);
+            tvRight.setText(rightContent);
             if (rightBitmap != null) {
-                rightText.setBackground(new BitmapDrawable(rightBitmap));
+                ivRight.setImageBitmap(rightBitmap);
             }
             rightlayout.setOnClickListener(new OnClickListener() {
                 @Override
@@ -235,7 +291,7 @@ public class MyTittleBar extends RelativeLayout {
     }
 
     public interface OnBackListener {
-        void onBackClick();
+        void onLeftClick();
     }
 
     public interface OnRightlayoutListener {

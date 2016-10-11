@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="58dp"
         mytittlebar:mytitle="设备列表"
-        mytittlebar:showbacklay="false" />
+        mytittlebar:showleftlay="false" />
 
     <ListView
         android:id="@+id/lv_devicelist"

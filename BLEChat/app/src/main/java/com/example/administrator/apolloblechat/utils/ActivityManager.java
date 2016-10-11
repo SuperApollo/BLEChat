@@ -1,4 +1,4 @@
-package com.example.administrator.apolloblechat.base;
+package com.example.administrator.apolloblechat.utils;
 
 import android.app.Activity;
 import android.content.Context;

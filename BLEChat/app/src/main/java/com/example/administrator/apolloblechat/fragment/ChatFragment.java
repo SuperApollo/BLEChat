@@ -50,8 +50,9 @@ public class ChatFragment extends BaseFragment {
 
         chat_title = queryViewById(view, R.id.chat_title);
         chat_title.setOnBackListener(new MyTittleBar.OnBackListener() {
+
             @Override
-            public void onBackClick() {
+            public void onLeftClick() {
                 rg_bottom.setVisibility(View.VISIBLE);
                 FragmentUtils.replace(getActivity(), R.id.ll_fragment_container, new ContactFragment());
             }

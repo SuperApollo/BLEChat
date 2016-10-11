@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         mytittlebar:mytitle="聊天"
-        mytittlebar:showbacklay="true" />
+        mytittlebar:showback="true"
+        mytittlebar:showleftlay="true" />
 
 
     <ListView
@@ -18,8 +19,8 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:scrollbars="none"
-        android:divider="@null"/>
+        android:divider="@null"
+        android:scrollbars="none" />
 
     <View
         android:layout_width="match_parent"
@@ -30,32 +31,36 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:orientation="horizontal">
+
         <ImageButton
             android:id="@+id/btn_chat_voice"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@mipmap/icon_chat_voice"
             android:layout_gravity="center_vertical"
-            android:layout_margin="5dp"/>
+            android:layout_margin="5dp"
+            android:background="@mipmap/icon_chat_voice" />
+
         <EditText
             android:id="@+id/et_chat_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
+
         <ImageButton
             android:id="@+id/btn_chat_face"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@mipmap/icon_chat_face"
             android:layout_gravity="center_vertical"
-            android:layout_margin="5dp"/>
+            android:layout_margin="5dp"
+            android:background="@mipmap/icon_chat_face" />
+
         <ImageButton
             android:id="@+id/btn_chat_add"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@mipmap/icon_chat_add"
             android:layout_gravity="center_vertical"
-            android:layout_margin="5dp"/>
+            android:layout_margin="5dp"
+            android:background="@mipmap/icon_chat_add" />
 
     </LinearLayout>
 

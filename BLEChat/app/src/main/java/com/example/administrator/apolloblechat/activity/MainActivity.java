@@ -3,18 +3,15 @@ package com.example.administrator.apolloblechat.activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.example.administrator.apolloblechat.R;
-import com.example.administrator.apolloblechat.base.ActivityManager;
-import com.example.administrator.apolloblechat.constant.AppConfig;
+import com.example.administrator.apolloblechat.utils.ActivityManager;
 import com.example.administrator.apolloblechat.fragment.ContactFragment;
 import com.example.administrator.apolloblechat.fragment.DeviceListFragment;
 import com.example.administrator.apolloblechat.fragment.MoreFragment;
 import com.example.administrator.apolloblechat.fragment.TransportFragment;
 import com.example.administrator.apolloblechat.utils.FragmentUtils;
-import com.example.administrator.apolloblechat.utils.SharedPreferencesUtils;
 import com.example.administrator.apolloblechat.utils.ToastUtil;
 
 /**
