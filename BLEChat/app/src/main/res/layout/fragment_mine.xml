@@ -6,10 +6,10 @@
     android:orientation="vertical">
 
     <com.example.administrator.apolloblechat.widgets.MyTittleBar
-        android:id="@+id/title_devicelist"
+        android:id="@+id/title_mine"
         android:layout_width="match_parent"
         android:layout_height="58dp"
         mytittlebar:mytitle="我的"
-        mytittlebar:showbacklay="false" />
+        mytittlebar:showbacklay="true" />
 
 </LinearLayout>
