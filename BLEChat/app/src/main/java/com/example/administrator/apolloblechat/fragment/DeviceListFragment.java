@@ -1,6 +1,7 @@
 package com.example.administrator.apolloblechat.fragment;
 
 import android.graphics.drawable.Drawable;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -38,6 +39,16 @@ public class DeviceListFragment extends BaseFragment {
                 mToastUtil.toaster(deviceListAdapter.getItem(position).getDeviceName());
             }
         });
+    }
+
+    @Override
+    protected boolean hideBottom() {
+        return false;
+    }
+
+    @Override
+    protected Fragment backTo() {
+        return null;
     }
 
     private List<DeviceBean> getData() {

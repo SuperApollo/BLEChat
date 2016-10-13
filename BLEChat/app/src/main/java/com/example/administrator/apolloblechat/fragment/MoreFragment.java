@@ -2,6 +2,7 @@ package com.example.administrator.apolloblechat.fragment;
 
 import android.app.Dialog;
 import android.os.Build;
+import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.example.administrator.apolloblechat.R;
@@ -134,6 +135,16 @@ public class MoreFragment extends BaseFragment {
         }, false, false);
 
         initFlash();
+    }
+
+    @Override
+    protected boolean hideBottom() {
+        return false;
+    }
+
+    @Override
+    protected Fragment backTo() {
+        return null;
     }
 
     private void initFlash() {

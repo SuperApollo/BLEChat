@@ -26,6 +26,11 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     private static final int THIRD = 10088;
     private static final int FOUTH = 10089;
     private int currentFragment = FIRST;
+    private OnBackKeyPressedListner mOnBackKeyPressedListner;
+
+    public void setmOnBackKeyPressedListner(OnBackKeyPressedListner mOnBackKeyPressedListner) {
+        this.mOnBackKeyPressedListner = mOnBackKeyPressedListner;
+    }
 
     @Override
     protected int getContentViewId() {
@@ -107,7 +112,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
+    /*    if (keyCode == KeyEvent.KEYCODE_BACK) {
             if ((System.currentTimeMillis() - mExitTime) > 2000) {
                 ToastUtil.toaster("再按一次退出程序");
                 mExitTime = System.currentTimeMillis();
@@ -115,8 +120,31 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 ActivityManager.getInstance().exitApp();
             }
             return true;
-        }
+        }*/
 
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (null != mOnBackKeyPressedListner) {
+            boolean hasFragment = mOnBackKeyPressedListner.onPressed();
+            mOnBackKeyPressedListner = null;
+            if (!hasFragment) {//为解决按两次返回键才退出程序问题
+                super.onBackPressed();
+            }
+        } else {
+            super.onBackPressed();
+        }
+
+    }
+
+
+    /**
+     * 将返回按键事件传递给fragment的接口
+     * 布尔值表示有无返回fragment
+     */
+    public interface OnBackKeyPressedListner {
+        boolean onPressed();
     }
 }

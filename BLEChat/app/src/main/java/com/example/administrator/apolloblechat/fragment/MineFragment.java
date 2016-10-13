@@ -1,5 +1,6 @@
 package com.example.administrator.apolloblechat.fragment;
 
+import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.example.administrator.apolloblechat.R;
@@ -29,5 +30,15 @@ public class MineFragment extends BaseFragment {
             }
 
         });
+    }
+
+    @Override
+    protected boolean hideBottom() {
+        return true;
+    }
+
+    @Override
+    protected Fragment backTo() {
+        return new MoreFragment();
     }
 }

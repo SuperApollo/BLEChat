@@ -1,6 +1,7 @@
 package com.example.administrator.apolloblechat.fragment;
 
 import android.graphics.drawable.Drawable;
+import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -120,6 +121,16 @@ public class ContactFragment extends BaseFragment {
         editSearch();
         initPop();
         testReadDao();
+    }
+
+    @Override
+    protected boolean hideBottom() {
+        return false;
+    }
+
+    @Override
+    protected Fragment backTo() {
+        return null;
     }
 
     private void testReadDao() {

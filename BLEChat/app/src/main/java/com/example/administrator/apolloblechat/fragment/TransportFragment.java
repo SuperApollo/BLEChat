@@ -1,5 +1,6 @@
 package com.example.administrator.apolloblechat.fragment;
 
+import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.example.administrator.apolloblechat.R;
@@ -31,6 +32,16 @@ public class TransportFragment extends BaseFragment {
             }
         }, false, false);
 
+    }
+
+    @Override
+    protected boolean hideBottom() {
+        return false;
+    }
+
+    @Override
+    protected Fragment backTo() {
+        return null;
     }
 
     private void setItemClick(View view, int viewID, int iconID, String name, View.OnClickListener listener, boolean lineVisibility, boolean badgeViewVisibility) {

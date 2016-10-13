@@ -1,5 +1,6 @@
 package com.example.administrator.apolloblechat.fragment;
 
+import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -80,6 +81,16 @@ public class ChatFragment extends BaseFragment {
                 return false;
             }
         });
+    }
+
+    @Override
+    protected boolean hideBottom() {
+        return true;
+    }
+
+    @Override
+    protected Fragment backTo() {
+        return new ContactFragment();
     }
 
     private void saveAndUpdateSend(String send) {

@@ -1,5 +1,6 @@
 package com.example.administrator.apolloblechat.fragment;
 
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -42,6 +43,16 @@ public class WelcomeFragmentFirstTime extends BaseFragment {
         prepareData();
         initCircle();
 
+    }
+
+    @Override
+    protected boolean hideBottom() {
+        return false;
+    }
+
+    @Override
+    protected Fragment backTo() {
+        return null;
     }
 
     /**

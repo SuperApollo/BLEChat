@@ -1,6 +1,7 @@
 package com.example.administrator.apolloblechat.fragment;
 
 import android.os.CountDownTimer;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.TextView;
 
@@ -43,6 +44,16 @@ public class WelcomeFragmentNormal extends BaseFragment {
             }
         };
         timer.start();
+    }
+
+    @Override
+    protected boolean hideBottom() {
+        return false;
+    }
+
+    @Override
+    protected Fragment backTo() {
+        return null;
     }
 
     private void checkLogin() {
