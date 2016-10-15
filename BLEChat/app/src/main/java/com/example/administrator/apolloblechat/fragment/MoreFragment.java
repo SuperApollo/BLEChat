@@ -52,9 +52,16 @@ public class MoreFragment extends BaseFragment {
 
             @Override
             public void onClick(View v) {
-                FragmentUtils.replace(getActivity(),R.id.ll_fragment_container,new MineFragment());
+                FragmentUtils.replace(getActivity(), R.id.ll_fragment_container, new MineFragment());
             }
         }, true, false);
+        setItemClick(view, R.id.item_more_scanner, R.mipmap.icon_item_more_scan, "扫一扫", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentUtils.replace(getActivity(), R.id.ll_fragment_container, new ScannerFragment());
+            }
+        }, false, false);
+
         setItemClick(view, R.id.item_more_setting, R.mipmap.icon_item_more_setting, "设置", new View.OnClickListener() {
 
             @Override

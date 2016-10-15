@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mytittlbar="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.example.administrator.apolloblechat.widgets.MyTittleBar
+        android:id="@+id/scanner_tittle"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        mytittlbar:lefttext="返回"
+        mytittlbar:mytitle="扫一扫"
+        mytittlbar:showleftlay="true" />
+
+    <Button
+        android:id="@+id/btn_scanner_scan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/selector_button"
+        android:text="扫描二维码" />
+
+    <Button
+        android:id="@+id/btn_scanner_create"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/selector_button"
+        android:text="生成" />
+
+    <ImageView
+        android:id="@+id/iv_scanner_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        />
+
+
+</LinearLayout>
