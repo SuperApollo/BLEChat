@@ -1,6 +1,5 @@
 package com.example.administrator.apolloblechat.activity;
 
-import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;

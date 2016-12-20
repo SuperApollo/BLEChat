@@ -6,13 +6,11 @@ import android.view.View;
 import android.widget.RadioGroup;
 
 import com.example.administrator.apolloblechat.R;
-import com.example.administrator.apolloblechat.utils.ActivityManager;
 import com.example.administrator.apolloblechat.fragment.ContactFragment;
 import com.example.administrator.apolloblechat.fragment.DeviceListFragment;
 import com.example.administrator.apolloblechat.fragment.MoreFragment;
 import com.example.administrator.apolloblechat.fragment.TransportFragment;
 import com.example.administrator.apolloblechat.utils.FragmentUtils;
-import com.example.administrator.apolloblechat.utils.ToastUtil;
 
 /**
  * Created by Administrator on 2016/8/29.
