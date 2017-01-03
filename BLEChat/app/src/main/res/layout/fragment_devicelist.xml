@@ -12,7 +12,7 @@
         mytittlebar:mytitle="设备列表"
         mytittlebar:showleftlay="false" />
 
-    <ListView
+    <com.example.administrator.apolloblechat.widgets.XListView
         android:id="@+id/lv_devicelist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
