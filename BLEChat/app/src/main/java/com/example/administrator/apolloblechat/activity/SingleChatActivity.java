@@ -46,7 +46,7 @@ public class SingleChatActivity extends BaseActivity {
     private int iconFrom;
     private final String TAG = getClass().getSimpleName();
     private int iconTo;
-    private BluetoothAdapter mBluetoothAdapter;
+    private BluetoothAdapter mBluetoothAdapter = null;
     private static final int REQUEST_ENABLE_BT = 3;
     private BluetoothChatService mChatService;
     private List<ChatBean> mChatBeans = new ArrayList<>();
@@ -122,13 +122,35 @@ public class SingleChatActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        super.onStart();
         /** 打开蓝牙设备*/
         if (!mBluetoothAdapter.isEnabled()) {
             Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
         } else if (mChatService == null) {
             setupChat();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Performing this check in onResume() covers the case in which BT was
+        // not enabled during onStart(), so we were paused to enable it...
+        // onResume() will be called when ACTION_REQUEST_ENABLE activity returns.
+        if (mChatService != null) {
+            // Only if the state is STATE_NONE, do we know that we haven't started already
+            if (mChatService.getState() == BluetoothChatService.STATE_NONE) {
+                // Start the Bluetooth chat services
+                mChatService.start();
+            }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mChatService != null) {
+            mChatService.stop();
         }
     }
 
