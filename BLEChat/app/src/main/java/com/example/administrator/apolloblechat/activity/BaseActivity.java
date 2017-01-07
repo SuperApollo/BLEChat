@@ -1,6 +1,7 @@
 package com.example.administrator.apolloblechat.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
 
     protected ToastUtil mToastUtil;
     protected CustomProgressView customProgressView;
+    protected Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         }
         View view = getLayoutInflater().inflate(getContentViewId(), null);
         setContentView(view);
+        mContext = this;
         if (changeSystemBar())
             initSystemBar(this);
         mToastUtil = ToastUtil.getInstance();
@@ -51,6 +54,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
 
     /**
      * 是否沉浸式状态栏
+     *
      * @return
      */
     protected abstract boolean changeSystemBar();

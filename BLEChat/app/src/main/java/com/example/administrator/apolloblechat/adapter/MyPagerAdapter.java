@@ -65,7 +65,7 @@ public class MyPagerAdapter extends PagerAdapter {
 //            view.setImageResource(pagerIds.get(position));
             int width = ViewUtil.getScreenWidth(context);
             int height = ViewUtil.getScreenHeight(context);
-            view.setImageBitmap(BitmapUtils.ratio(bitmap, width, height));
+            view.setImageBitmap(BitmapUtils.ratio(bitmap, width, height));//压缩bitmap
             container.addView(view);
             return view;
         } else return null;

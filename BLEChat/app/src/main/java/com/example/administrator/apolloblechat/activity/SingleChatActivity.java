@@ -1,6 +1,5 @@
-package com.example.administrator.apolloblechat.fragment;
+package com.example.administrator.apolloblechat.activity;
 
-import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -15,7 +14,6 @@ import com.example.administrator.apolloblechat.R;
 import com.example.administrator.apolloblechat.adapter.ChatAdapter;
 import com.example.administrator.apolloblechat.bean.ChatBean;
 import com.example.administrator.apolloblechat.constant.AppConfig;
-import com.example.administrator.apolloblechat.utils.FragmentUtils;
 import com.example.administrator.apolloblechat.utils.SharedPreferencesUtils;
 import com.example.administrator.apolloblechat.utils.TimeUtils;
 import com.example.administrator.apolloblechat.widgets.MyTittleBar;
@@ -25,10 +23,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/8/30.
+ * Created by zayh_yf20160909 on 2017/1/7.
  */
-public class ChatFragment extends BaseFragment {
 
+public class SingleChatActivity extends BaseActivity {
     private ListView lv_chatlist;
     private RadioGroup rg_bottom;
     private MyTittleBar chat_title;
@@ -39,33 +37,37 @@ public class ChatFragment extends BaseFragment {
     private int iconTo;
 
     @Override
-    protected int getViewId() {
-        return R.layout.fragment_chat;
+    protected int getContentViewId() {
+        return R.layout.activity_single_chat;
+    }
+
+    @Override
+    protected boolean fullScreen() {
+        return false;
+    }
+
+    @Override
+    protected boolean changeSystemBar() {
+        return true;
     }
 
     @Override
     protected void initView(View view) {
-        //隐藏底部
-        rg_bottom = (RadioGroup) getActivity().findViewById(R.id.rg_bottom);
-        rg_bottom.setVisibility(View.GONE);
-
-        chat_title = queryViewById(view, R.id.chat_title);
+        chat_title = queryViewById(view, R.id.single_chat_title);
         chat_title.setOnBackListener(new MyTittleBar.OnBackListener() {
-
             @Override
             public void onLeftClick() {
-                rg_bottom.setVisibility(View.VISIBLE);
-                FragmentUtils.replace(getActivity(), R.id.ll_fragment_container, new ContactFragment());
+                SingleChatActivity.this.finish();
             }
         });
 
-        lv_chatlist = queryViewById(view, R.id.lv_chatlist);
+        lv_chatlist = queryViewById(view, R.id.lv_singlechat_list);
         dataList = getData();
         chatAdapter = new ChatAdapter(mContext, dataList);
         lv_chatlist.setAdapter(chatAdapter);
         lv_chatlist.setSelection(dataList.size() - 1);
 
-        et_chat_input = queryViewById(view, R.id.et_chat_input);
+        et_chat_input = queryViewById(view, R.id.et_singlechat_input);
         et_chat_input.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -82,32 +84,6 @@ public class ChatFragment extends BaseFragment {
             }
         });
     }
-
-    @Override
-    protected boolean hideBottom() {
-        return true;
-    }
-
-    @Override
-    protected Fragment backTo() {
-        return new ContactFragment();
-    }
-
-    private void saveAndUpdateSend(String send) {
-        ChatBean sendBean = new ChatBean(TimeUtils.getCurrentTime(), iconTo, "我", send, false);
-        dataList.add(sendBean);
-        chatAdapter.notifyDataSetChanged();
-        lv_chatlist.setSelection(dataList.size() - 1);
-
-        try {
-            SharedPreferencesUtils.putObject(AppConfig.CHATBEN_NAME, sendBean);
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.i("ChatFragment", "存储发送消息对象失败================");
-        }
-
-    }
-
 
     private List<ChatBean> getData() {
         List<ChatBean> chatBeans = new ArrayList<>();
@@ -133,5 +109,20 @@ public class ChatFragment extends BaseFragment {
         }
 
         return chatBeans;
+    }
+
+    private void saveAndUpdateSend(String send) {
+        ChatBean sendBean = new ChatBean(TimeUtils.getCurrentTime(), iconTo, "我", send, false);
+        dataList.add(sendBean);
+        chatAdapter.notifyDataSetChanged();
+        lv_chatlist.setSelection(dataList.size() - 1);
+
+        try {
+            SharedPreferencesUtils.putObject(AppConfig.CHATBEN_NAME, sendBean);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.i("ChatFragment", "存储发送消息对象失败================");
+        }
+
     }
 }

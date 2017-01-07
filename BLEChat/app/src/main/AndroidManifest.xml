@@ -70,8 +70,11 @@
             android:name=".activity.RegistActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
-        <activity android:name=".zxing.activity.CaptureActivity"/>
-
+        <activity android:name=".zxing.activity.CaptureActivity" />
+        <activity
+            android:name=".activity.SingleChatActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

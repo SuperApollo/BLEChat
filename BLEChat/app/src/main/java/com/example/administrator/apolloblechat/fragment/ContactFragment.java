@@ -17,9 +17,11 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.administrator.apolloblechat.R;
+import com.example.administrator.apolloblechat.activity.SingleChatActivity;
 import com.example.administrator.apolloblechat.adapter.ContactAdapter;
 import com.example.administrator.apolloblechat.bean.ContactBean;
 import com.example.administrator.apolloblechat.utils.FragmentUtils;
+import com.example.administrator.apolloblechat.utils.IntentUtils;
 import com.example.administrator.apolloblechat.widgets.MyTittleBar;
 import com.example.administrator.apolloblechat.widgets.SidebarView;
 import com.example.administrator.apolloblechat.widgets.XListView;
@@ -109,7 +111,7 @@ public class ContactFragment extends BaseFragment {
         xlv_contact.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                FragmentUtils.replace(getActivity(), R.id.ll_fragment_container, new ChatFragment());
+                IntentUtils.sendIntent(getActivity(), SingleChatActivity.class);
             }
         });
 

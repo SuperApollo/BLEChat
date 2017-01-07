@@ -3,6 +3,7 @@ package com.example.administrator.apolloblechat.fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
@@ -79,7 +80,7 @@ public class ScannerFragment extends BaseFragment {
                 try {
 //                    Bitmap mBitmap = EncodingHandler.createQRCode("www.baidu.com", 300);
 //                    qrcodeImg.setImageBitmap(mBitmap);
-                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.icon_blechat_logo);
                     Bitmap www = EncodingHandler.createQRCode("www.baidu.com", 600, 600, bitmap);
                     iv_scanner_show.setImageBitmap(www);
                 } catch (Exception e) {
@@ -88,4 +89,6 @@ public class ScannerFragment extends BaseFragment {
                 break;
         }
     }
+
+
 }
