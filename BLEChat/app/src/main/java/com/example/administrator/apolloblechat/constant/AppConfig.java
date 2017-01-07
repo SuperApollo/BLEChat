@@ -1,5 +1,9 @@
 package com.example.administrator.apolloblechat.constant;
 
+import android.os.Environment;
+
+import java.io.File;
+
 /**
  * Created by Administrator on 2016/9/14.
  */
@@ -9,6 +13,10 @@ public class AppConfig {
      */
     public static final String SHARED_PATH = "apollo_chat_share";
     public static final String SYN_SHARED_PATH = "syn_apollo_chat_share";
+    /**
+     * 存储图片的位置
+     */
+    public static final String FILE_DOWNLOAD = Environment.getExternalStorageDirectory() + File.separator + "apollochat/";
     /**
      * 聊天信息对象名称
      */

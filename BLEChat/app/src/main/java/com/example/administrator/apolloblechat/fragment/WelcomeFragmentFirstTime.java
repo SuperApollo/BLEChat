@@ -1,7 +1,7 @@
 package com.example.administrator.apolloblechat.fragment;
 
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import com.example.administrator.apolloblechat.R;
 import com.example.administrator.apolloblechat.activity.LoginActivity;
 import com.example.administrator.apolloblechat.adapter.MyPagerAdapter;
-import com.example.administrator.apolloblechat.utils.ImageLoaderUtils;
 import com.example.administrator.apolloblechat.utils.IntentUtils;
 import com.example.administrator.apolloblechat.widgets.LooperViewPager;
 
@@ -22,13 +21,14 @@ import java.util.ArrayList;
  */
 public class WelcomeFragmentFirstTime extends BaseFragment {
 
-    private LooperViewPager vp_looper;
+    private ViewPager vp_splash;
     private LinearLayout point_container;
     private ImageView iv1;
     private ImageView iv2;
     private ImageView iv3;
     private ImageView iv4;
     private ArrayList pagerList;
+    private ArrayList pagerIds;
     private ImageView[] imageViews;
 
 
@@ -39,7 +39,8 @@ public class WelcomeFragmentFirstTime extends BaseFragment {
 
     @Override
     protected void initView(View view) {
-        vp_looper = queryViewById(view, R.id.vp_looper);
+        vp_splash = queryViewById(view, R.id.vp_looper);
+        vp_splash.setOffscreenPageLimit(2);
         point_container = queryViewById(view, R.id.point_container);
 
         prepareData();
@@ -78,47 +79,53 @@ public class WelcomeFragmentFirstTime extends BaseFragment {
      * viewpager准备数据
      */
     private void prepareData() {
+        pagerList = new ArrayList();
+        pagerIds = new ArrayList<>();
+        iv1 = new ImageView(mContext);
+        iv2 = new ImageView(mContext);
+        iv3 = new ImageView(mContext);
+        iv4 = new ImageView(mContext);
 
-//        iv1 = new ImageView(mContext);
-//        iv2 = new ImageView(mContext);
-//        iv3 = new ImageView(mContext);
-//        iv4 = new ImageView(mContext);
-//
-//        iv1.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-//                ViewGroup.LayoutParams.MATCH_PARENT));
-//        iv2.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-//                ViewGroup.LayoutParams.MATCH_PARENT));
-//        iv3.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-//                ViewGroup.LayoutParams.MATCH_PARENT));
-//        iv4.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-//                ViewGroup.LayoutParams.MATCH_PARENT));
-//
-//        iv1.setScaleType(ImageView.ScaleType.FIT_XY);
-//        iv2.setScaleType(ImageView.ScaleType.FIT_XY);
-//        iv3.setScaleType(ImageView.ScaleType.FIT_XY);
-//        iv4.setScaleType(ImageView.ScaleType.FIT_XY);
-//
+        iv1.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT));
+        iv2.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT));
+        iv3.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT));
+        iv4.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT));
+
+        iv1.setScaleType(ImageView.ScaleType.FIT_XY);
+        iv2.setScaleType(ImageView.ScaleType.FIT_XY);
+        iv3.setScaleType(ImageView.ScaleType.FIT_XY);
+        iv4.setScaleType(ImageView.ScaleType.FIT_XY);
+
 //        iv1.setImageResource(R.mipmap.icon_vp_first);
 //        iv2.setImageResource(R.mipmap.icon_vp_second);
 //        iv3.setImageResource(R.mipmap.icon_vp_third);
 //        iv4.setImageResource(R.mipmap.icon_vp_fourth);
 
-        LayoutInflater inflater = LayoutInflater.from(mContext);
-        pagerList = new ArrayList();
-        pagerList.add(inflater.inflate(R.layout.welcome_first, null));
-        pagerList.add(inflater.inflate(R.layout.welcome_second, null));
-        pagerList.add(inflater.inflate(R.layout.welcome_third, null));
-        pagerList.add(inflater.inflate(R.layout.welcome_fourth, null));
+//        LayoutInflater inflater = LayoutInflater.from(mContext);
 
-//        pagerList.add(iv1);
-//        pagerList.add(iv2);
-//        pagerList.add(iv3);
-//        pagerList.add(iv4);
+//        pagerList.add(inflater.inflate(R.layout.welcome_first, null));
+//        pagerList.add(inflater.inflate(R.layout.welcome_second, null));
+//        pagerList.add(inflater.inflate(R.layout.welcome_third, null));
+//        pagerList.add(inflater.inflate(R.layout.welcome_fourth, null));
+
+        pagerList.add(iv1);
+        pagerList.add(iv2);
+        pagerList.add(iv3);
+        pagerList.add(iv4);
+
+        pagerIds.add(R.mipmap.icon_vp_first);
+        pagerIds.add(R.mipmap.icon_vp_second);
+        pagerIds.add(R.mipmap.icon_vp_third);
+        pagerIds.add(R.mipmap.icon_vp_fourth);
 
 
-        MyPagerAdapter pagerAdapter = new MyPagerAdapter(pagerList);
-        vp_looper.setAdapter(pagerAdapter);
-        vp_looper.setPageChangeListener(new LooperViewPager.IPageChangeListener() {
+        MyPagerAdapter pagerAdapter = new MyPagerAdapter(pagerList, pagerIds,mContext);
+        vp_splash.setAdapter(pagerAdapter);
+        vp_splash.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -139,7 +146,6 @@ public class WelcomeFragmentFirstTime extends BaseFragment {
                     IntentUtils.sendIntent(getActivity(), LoginActivity.class);
                     getActivity().finish();
                 }
-
             }
 
             @Override
@@ -148,6 +154,6 @@ public class WelcomeFragmentFirstTime extends BaseFragment {
             }
         });
 
-//        vp_looper.startLooper();
+//        vp_splash.startLooper();
     }
 }
