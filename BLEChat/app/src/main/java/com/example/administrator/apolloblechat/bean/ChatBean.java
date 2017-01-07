@@ -20,6 +20,9 @@ public class ChatBean implements Serializable {
         this.isFrom = isFrom;
     }
 
+    public ChatBean() {
+    }
+
     public String getTime() {
         return time;
     }

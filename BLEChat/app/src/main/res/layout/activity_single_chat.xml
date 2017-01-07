@@ -64,6 +64,14 @@
             android:layout_margin="5dp"
             android:background="@mipmap/icon_chat_add" />
 
+        <Button
+            android:id="@+id/btn_single_chat_send"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="5dp"
+            android:text="发送" />
+
     </LinearLayout>
 
 </LinearLayout>
