@@ -31,5 +31,6 @@ dependencies {
     compile 'com.zcw:togglebutton-library:1.0.0'
     compile 'org.greenrobot:greendao:2.2.0'
     compile 'com.google.zxing:core:3.2.1'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
 }
 
