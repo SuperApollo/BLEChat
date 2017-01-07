@@ -81,6 +81,8 @@ public class ContactFragment extends BaseFragment {
         et_contact_search = queryViewById(view, R.id.et_contact_search);
         tv_contact_show = queryViewById(view, R.id.tv_contact_show);
         xlv_contact = queryViewById(view, R.id.xlv_contact);
+        xlv_contact.setPullRefreshEnable(false);
+        xlv_contact.setPullLoadEnable(false);
         sidebar_contact = queryViewById(view, R.id.sidebar_contact);
         title_contact = queryViewById(view, R.id.title_contact);
 
@@ -139,8 +141,8 @@ public class ContactFragment extends BaseFragment {
             List<Contact> allContacts = helper.getAllContacts();
             if (null != allContacts && allContacts.size() > 0)
                 for (Contact contact : allContacts) {
-                    Log.i(TAG, "contact: " + contact.getName()+contact.getSex()+contact.getAge()+contact.getPhoe()+
-                    contact.getBle());
+                    Log.i(TAG, "contact: " + contact.getName() + contact.getSex() + contact.getAge() + contact.getPhoe() +
+                            contact.getBle());
                 }
         }
     }

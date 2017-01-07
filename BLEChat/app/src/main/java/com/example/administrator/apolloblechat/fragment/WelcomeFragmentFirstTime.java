@@ -1,6 +1,7 @@
 package com.example.administrator.apolloblechat.fragment;
 
 import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -10,6 +11,7 @@ import android.widget.LinearLayout;
 import com.example.administrator.apolloblechat.R;
 import com.example.administrator.apolloblechat.activity.LoginActivity;
 import com.example.administrator.apolloblechat.adapter.MyPagerAdapter;
+import com.example.administrator.apolloblechat.utils.ImageLoaderUtils;
 import com.example.administrator.apolloblechat.utils.IntentUtils;
 import com.example.administrator.apolloblechat.widgets.LooperViewPager;
 
@@ -66,7 +68,7 @@ public class WelcomeFragmentFirstTime extends BaseFragment {
             params.setMargins(10, 0, 10, 0);
             imageView.setLayoutParams(params);
             imageViews[i] = imageView;
-            imageViews[i].setBackgroundResource(R.mipmap.icon_point_unfocused);
+            imageViews[i].setBackgroundResource(i == 0 ? R.mipmap.icon_point_focused : R.mipmap.icon_point_unfocused);
             //将小圆点放入
             point_container.addView(imageViews[i]);
         }
@@ -77,35 +79,42 @@ public class WelcomeFragmentFirstTime extends BaseFragment {
      */
     private void prepareData() {
 
-        iv1 = new ImageView(mContext);
-        iv2 = new ImageView(mContext);
-        iv3 = new ImageView(mContext);
-        iv4 = new ImageView(mContext);
+//        iv1 = new ImageView(mContext);
+//        iv2 = new ImageView(mContext);
+//        iv3 = new ImageView(mContext);
+//        iv4 = new ImageView(mContext);
+//
+//        iv1.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+//                ViewGroup.LayoutParams.MATCH_PARENT));
+//        iv2.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+//                ViewGroup.LayoutParams.MATCH_PARENT));
+//        iv3.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+//                ViewGroup.LayoutParams.MATCH_PARENT));
+//        iv4.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+//                ViewGroup.LayoutParams.MATCH_PARENT));
+//
+//        iv1.setScaleType(ImageView.ScaleType.FIT_XY);
+//        iv2.setScaleType(ImageView.ScaleType.FIT_XY);
+//        iv3.setScaleType(ImageView.ScaleType.FIT_XY);
+//        iv4.setScaleType(ImageView.ScaleType.FIT_XY);
+//
+//        iv1.setImageResource(R.mipmap.icon_vp_first);
+//        iv2.setImageResource(R.mipmap.icon_vp_second);
+//        iv3.setImageResource(R.mipmap.icon_vp_third);
+//        iv4.setImageResource(R.mipmap.icon_vp_fourth);
 
-        iv1.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT));
-        iv2.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT));
-        iv3.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT));
-        iv4.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT));
-
-        iv1.setScaleType(ImageView.ScaleType.FIT_XY);
-        iv2.setScaleType(ImageView.ScaleType.FIT_XY);
-        iv3.setScaleType(ImageView.ScaleType.FIT_XY);
-        iv4.setScaleType(ImageView.ScaleType.FIT_XY);
-
-        iv1.setImageResource(R.mipmap.icon_vp_first);
-        iv2.setImageResource(R.mipmap.icon_vp_second);
-        iv3.setImageResource(R.mipmap.icon_vp_third);
-        iv4.setImageResource(R.mipmap.icon_vp_fouth);
-
+        LayoutInflater inflater = LayoutInflater.from(mContext);
         pagerList = new ArrayList();
-        pagerList.add(iv1);
-        pagerList.add(iv2);
-        pagerList.add(iv3);
-        pagerList.add(iv4);
+        pagerList.add(inflater.inflate(R.layout.welcome_first, null));
+        pagerList.add(inflater.inflate(R.layout.welcome_second, null));
+        pagerList.add(inflater.inflate(R.layout.welcome_third, null));
+        pagerList.add(inflater.inflate(R.layout.welcome_fourth, null));
+
+//        pagerList.add(iv1);
+//        pagerList.add(iv2);
+//        pagerList.add(iv3);
+//        pagerList.add(iv4);
+
 
         MyPagerAdapter pagerAdapter = new MyPagerAdapter(pagerList);
         vp_looper.setAdapter(pagerAdapter);

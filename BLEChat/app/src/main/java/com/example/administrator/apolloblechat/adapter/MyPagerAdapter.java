@@ -22,7 +22,7 @@ public class MyPagerAdapter extends PagerAdapter {
     public int getCount() {
 //                return pagerList.size();
         //取大值，无限滑动
-        return pagerList.size();
+        return pagerList.size()+1;
     }
 
     @Override
@@ -45,9 +45,12 @@ public class MyPagerAdapter extends PagerAdapter {
             ViewGroup parent = (ViewGroup) vp;
             parent.removeView(imageView);
         }*/
-        ImageView imageView = (ImageView) pagerList.get(position);
-        container.addView(imageView);
-        return imageView;
+        if (position < pagerList.size()){
+            View view = pagerList.get(position);
+            container.addView(view);
+            return view;
+        }else return null;
+
     }
 
     @Override
