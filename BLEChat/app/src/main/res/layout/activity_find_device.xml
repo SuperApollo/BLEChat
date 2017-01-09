@@ -14,11 +14,38 @@
         mytitle:showback="true"
         mytitle:showleftlay="true" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_device_list"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/title_find_device" />
+        android:layout_below="@+id/title_find_device"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="已配对设备" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_paired_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="5dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="搜索到的设备" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_new_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/btn_search"
@@ -28,6 +55,30 @@
         android:layout_alignParentRight="true"
         android:layout_margin="5dp"
         android:src="@mipmap/icon_button_search" />
+
+    <LinearLayout
+        android:id="@+id/pb_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@color/grey_transparent"
+        android:padding="5dp"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:text="扫描中..."
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
 
 
 </RelativeLayout>
