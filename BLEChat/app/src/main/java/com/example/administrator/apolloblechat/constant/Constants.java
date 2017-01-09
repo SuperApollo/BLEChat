@@ -35,5 +35,9 @@ public interface Constants {
     // Key names received from the BluetoothChatService Handler
     public static final String DEVICE_NAME = "device_name";
     public static final String TOAST = "toast";
+    /**
+     * Return Intent extra
+     */
+    public static final String EXTRA_DEVICE_ADDRESS = "device_address";
 
 }

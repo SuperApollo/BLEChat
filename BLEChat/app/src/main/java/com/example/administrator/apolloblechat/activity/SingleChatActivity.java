@@ -1,7 +1,9 @@
 package com.example.administrator.apolloblechat.activity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,7 +27,6 @@ import com.example.administrator.apolloblechat.bean.ChatBean;
 import com.example.administrator.apolloblechat.constant.AppConfig;
 import com.example.administrator.apolloblechat.constant.Constants;
 import com.example.administrator.apolloblechat.service.BluetoothChatService;
-import com.example.administrator.apolloblechat.utils.IntentUtils;
 import com.example.administrator.apolloblechat.utils.SharedPreferencesUtils;
 import com.example.administrator.apolloblechat.utils.TimeUtils;
 import com.example.administrator.apolloblechat.widgets.MyTittleBar;
@@ -50,6 +51,7 @@ public class SingleChatActivity extends BaseActivity {
     private int iconTo;
     private BluetoothAdapter mBluetoothAdapter = null;
     private static final int REQUEST_ENABLE_BT = 3;
+    private static final int REQUEST_CONNECT_DEVICE_SECURE = 1;
     private BluetoothChatService mChatService;
     private List<ChatBean> mChatBeans = new ArrayList<>();
     /**
@@ -146,6 +148,30 @@ public class SingleChatActivity extends BaseActivity {
                 mChatService.start();
             }
         }
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case REQUEST_CONNECT_DEVICE_SECURE:
+                // When DeviceListActivity returns with a device to connect
+                if (resultCode == Activity.RESULT_OK) {
+                    connectDevice(data, true);
+                }
+                break;
+            case REQUEST_ENABLE_BT:
+                // When the request to enable Bluetooth returns
+                if (resultCode == Activity.RESULT_OK) {
+                    // Bluetooth is now enabled, so set up a chat session
+                    setupChat();
+                } else {
+                    // User did not enable Bluetooth or an error occurred
+                    Toast.makeText(this, "蓝牙开启失败！",
+                            Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+        }
     }
 
     @Override
@@ -153,6 +179,31 @@ public class SingleChatActivity extends BaseActivity {
         super.onDestroy();
         if (mChatService != null) {
             mChatService.stop();
+        }
+    }
+
+    /**
+     * 连接设备
+     */
+    private void connectDevice(Intent data, boolean secure) {
+        // Get the device MAC address
+        String address = data.getExtras()
+                .getString(Constants.EXTRA_DEVICE_ADDRESS);
+        // Get the BluetoothDevice object
+        BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
+        // Attempt to connect to the device
+        mChatService.connect(device, secure);
+    }
+
+    /**
+     * 让本设备可见
+     */
+    private void ensureDiscoverable() {
+        if (mBluetoothAdapter.getScanMode() !=
+                BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE) {
+            Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+            discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
+            startActivity(discoverableIntent);
         }
     }
 
@@ -270,7 +321,9 @@ public class SingleChatActivity extends BaseActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        IntentUtils.sendIntent(SingleChatActivity.this, FindDeviceActivity.class);
+//                        ensureDiscoverable();
+                        Intent serverIntent = new Intent(SingleChatActivity.this, FindDeviceActivity.class);
+                        startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE_SECURE);
                     }
                 });
                 builder.show();

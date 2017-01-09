@@ -19,6 +19,11 @@ public class PairedBleAdapter extends RecyclerView.Adapter<PairedBleAdapter.MyHo
     private Context context;
     private List<String> datas;
     private final LayoutInflater inflater;
+    private OnItemClickListner onItemClickListner;
+
+    public void setOnItemClickListner(OnItemClickListner onItemClickListner) {
+        this.onItemClickListner = onItemClickListner;
+    }
 
     public PairedBleAdapter(Context context, List<String> datas) {
         this.context = context;
@@ -33,8 +38,25 @@ public class PairedBleAdapter extends RecyclerView.Adapter<PairedBleAdapter.MyHo
     }
 
     @Override
-    public void onBindViewHolder(MyHolder holder, int position) {
+    public void onBindViewHolder(final MyHolder holder, int position) {
         holder.tv.setText(datas.get(position));
+        if (onItemClickListner != null) {
+            holder.tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int p = holder.getLayoutPosition();
+                    onItemClickListner.onItemClick(view, p);
+                }
+            });
+            holder.tv.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    int p = holder.getAdapterPosition();
+                    onItemClickListner.onItemLongClick(view, p);
+                    return false;
+                }
+            });
+        }
     }
 
     @Override
@@ -49,5 +71,11 @@ public class PairedBleAdapter extends RecyclerView.Adapter<PairedBleAdapter.MyHo
             super(itemView);
             tv = (TextView) itemView.findViewById(R.id.tv_ble_list);
         }
+    }
+
+    public interface OnItemClickListner {
+        void onItemClick(View view, int position);
+
+        void onItemLongClick(View view, int position);
     }
 }

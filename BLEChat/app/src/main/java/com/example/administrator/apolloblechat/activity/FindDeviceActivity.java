@@ -1,5 +1,6 @@
 package com.example.administrator.apolloblechat.activity;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -11,10 +12,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.administrator.apolloblechat.R;
 import com.example.administrator.apolloblechat.adapter.NewBleAdapter;
 import com.example.administrator.apolloblechat.adapter.PairedBleAdapter;
+import com.example.administrator.apolloblechat.constant.Constants;
 import com.example.administrator.apolloblechat.widgets.DividerItemDecoration;
 import com.example.administrator.apolloblechat.widgets.MyTittleBar;
 
@@ -103,6 +106,45 @@ public class FindDeviceActivity extends BaseActivity {
         filter = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
         this.registerReceiver(mReceiver, filter);
 
+        mPairedAdapter.setOnItemClickListner(new PairedBleAdapter.OnItemClickListner() {
+            @Override
+            public void onItemClick(View view, int position) {
+                mToastUtil.toaster(position + "");
+                // Cancel discovery because it's costly and we're about to connect
+                mBleAdapter.cancelDiscovery();
+
+                // Get the device MAC address, which is the last 17 chars in the View
+                String info = ((TextView) view).getText().toString();
+                String address = info.substring(info.length() - 17);
+
+                // Create the result Intent and include the MAC address
+                Intent intent = new Intent();
+                //address is the Mac address which you want to connect
+                intent.putExtra(Constants.EXTRA_DEVICE_ADDRESS, address);
+
+                // Set result and finish this Activity
+                setResult(Activity.RESULT_OK, intent);
+                finish();
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+
+            }
+        });
+        mNewAdapter.setOnItemClickListner(new NewBleAdapter.OnItemClickListner() {
+            @Override
+            public void onItemClick(View view, int position) {
+                mToastUtil.toaster(position + "");
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+
+            }
+        });
+
+        doDiscovery();
 
     }
 
