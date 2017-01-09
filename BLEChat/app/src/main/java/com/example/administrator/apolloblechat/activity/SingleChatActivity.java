@@ -1,11 +1,12 @@
 package com.example.administrator.apolloblechat.activity;
 
+import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.PersistableBundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -24,6 +25,7 @@ import com.example.administrator.apolloblechat.bean.ChatBean;
 import com.example.administrator.apolloblechat.constant.AppConfig;
 import com.example.administrator.apolloblechat.constant.Constants;
 import com.example.administrator.apolloblechat.service.BluetoothChatService;
+import com.example.administrator.apolloblechat.utils.IntentUtils;
 import com.example.administrator.apolloblechat.utils.SharedPreferencesUtils;
 import com.example.administrator.apolloblechat.utils.TimeUtils;
 import com.example.administrator.apolloblechat.widgets.MyTittleBar;
@@ -107,8 +109,8 @@ public class SingleChatActivity extends BaseActivity {
 
 
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         //获得本地蓝牙BluetoothAdapter
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
@@ -176,6 +178,11 @@ public class SingleChatActivity extends BaseActivity {
         chat_title.setTitle(Title);
     }
 
+    /**
+     * 处理发送UI
+     *
+     * @param msg
+     */
     private void send(String msg) {
         ChatBean bean = new ChatBean();
         bean.setTime(TimeUtils.getCurrentTime());
@@ -189,6 +196,11 @@ public class SingleChatActivity extends BaseActivity {
 
     }
 
+    /**
+     * 处理接收UI
+     *
+     * @param msg
+     */
     private void receive(String msg) {
         ChatBean bean = new ChatBean();
         bean.setTime(TimeUtils.getCurrentTime());
@@ -242,6 +254,29 @@ public class SingleChatActivity extends BaseActivity {
                 SingleChatActivity.this.finish();
             }
         });
+        chat_title.setOnRightlayoutListener(new MyTittleBar.OnRightlayoutListener() {
+            @Override
+            public void onRightClick() {
+                AlertDialog.Builder builder = new AlertDialog.Builder(SingleChatActivity.this);
+                builder.setTitle("连接蓝牙");
+                builder.setMessage("确定连接蓝牙吗？");
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        IntentUtils.sendIntent(SingleChatActivity.this, FindDeviceActivity.class);
+                    }
+                });
+                builder.show();
+            }
+        });
+
 
         mLv_chatlist = queryViewById(view, R.id.lv_singlechat_list);
         dataList = getData();

@@ -286,7 +286,7 @@ public class BluetoothChatService {
      * This thread runs while listening for incoming connections. It behaves
      * like a server-side client. It runs until a connection is accepted
      * (or until cancelled).
-     *
+     * <p>
      * 监听来自其他设备的蓝牙连接，
      */
     private class AcceptThread extends Thread {
@@ -445,7 +445,7 @@ public class BluetoothChatService {
     /**
      * This thread runs during a connection with a remote device.
      * It handles all incoming and outgoing transmissions.
-     *
+     * <p>
      * 连接完成，进行读写
      */
     private class ConnectedThread extends Thread {

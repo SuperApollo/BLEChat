@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mytitle="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true">
+
+    <com.example.administrator.apolloblechat.widgets.MyTittleBar
+        android:id="@+id/title_find_device"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        mytitle:mytitle="发现蓝牙"
+        mytitle:showback="true"
+        mytitle:showleftlay="true" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_device_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/title_find_device" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btn_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="5dp"
+        android:src="@mipmap/icon_button_search" />
+
+
+</RelativeLayout>

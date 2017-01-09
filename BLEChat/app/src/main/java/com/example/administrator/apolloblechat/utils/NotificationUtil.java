@@ -84,7 +84,7 @@ public class NotificationUtil {
             notification.ledARGB = Color.GREEN;
             notification.ledOnMS = 5000; //闪光时间，毫秒
             notification.tickerText = ticker;
-            notification.setLatestEventInfo(context, title, msg, pendingIntent);
+//            notification.setLatestEventInfo(context, title, msg, pendingIntent);
             // 把Notification传递给NotificationManager
             notificationManager.notify(id, notification);
         }

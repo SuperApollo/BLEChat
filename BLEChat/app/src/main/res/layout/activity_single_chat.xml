@@ -12,8 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         mytittlebar:mytitle="聊天"
+        mytittlebar:rightimg="@mipmap/icon_title_more"
         mytittlebar:showback="true"
-        mytittlebar:showleftlay="true" />
+        mytittlebar:showleftlay="true"
+        mytittlebar:showrightlay='true' />
 
 
     <ListView
