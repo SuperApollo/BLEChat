@@ -195,17 +195,6 @@ public class SingleChatActivity extends BaseActivity {
         mChatService.connect(device, secure);
     }
 
-    /**
-     * 让本设备可见
-     */
-    private void ensureDiscoverable() {
-        if (mBluetoothAdapter.getScanMode() !=
-                BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE) {
-            Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
-            discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
-            startActivity(discoverableIntent);
-        }
-    }
 
     private void setupChat() {
         mBtnSend.setOnClickListener(new View.OnClickListener() {
@@ -357,6 +346,11 @@ public class SingleChatActivity extends BaseActivity {
         mBtnSend = queryViewById(view, R.id.btn_single_chat_send);
     }
 
+    /**
+     * 模拟数据
+     *
+     * @return
+     */
     private List<ChatBean> getData() {
 
         for (int i = 0; i < 10; i++) {

@@ -1,10 +1,12 @@
 package com.example.administrator.apolloblechat.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.design.widget.FloatingActionButton;
@@ -109,22 +111,7 @@ public class FindDeviceActivity extends BaseActivity {
         mPairedAdapter.setOnItemClickListner(new PairedBleAdapter.OnItemClickListner() {
             @Override
             public void onItemClick(View view, int position) {
-                mToastUtil.toaster(position + "");
-                // Cancel discovery because it's costly and we're about to connect
-                mBleAdapter.cancelDiscovery();
-
-                // Get the device MAC address, which is the last 17 chars in the View
-                String info = ((TextView) view).getText().toString();
-                String address = info.substring(info.length() - 17);
-
-                // Create the result Intent and include the MAC address
-                Intent intent = new Intent();
-                //address is the Mac address which you want to connect
-                intent.putExtra(Constants.EXTRA_DEVICE_ADDRESS, address);
-
-                // Set result and finish this Activity
-                setResult(Activity.RESULT_OK, intent);
-                finish();
+                connect((TextView) view, position);
             }
 
             @Override
@@ -135,7 +122,7 @@ public class FindDeviceActivity extends BaseActivity {
         mNewAdapter.setOnItemClickListner(new NewBleAdapter.OnItemClickListner() {
             @Override
             public void onItemClick(View view, int position) {
-                mToastUtil.toaster(position + "");
+                connect((TextView) view, position);
             }
 
             @Override
@@ -144,8 +131,65 @@ public class FindDeviceActivity extends BaseActivity {
             }
         });
 
+        mTitle.setOnRightlayoutListener(new MyTittleBar.OnRightlayoutListener() {
+            @Override
+            public void onRightClick() {
+                showDialog();
+            }
+        });
         doDiscovery();
 
+    }
+
+    private void showDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(FindDeviceActivity.this);
+        builder.setTitle("使蓝牙可见");
+        builder.setMessage("确定让本机蓝牙可见吗？");
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+                ensureDiscoverable();
+            }
+        });
+        builder.show();
+    }
+
+    /**
+     * 让本设备可见
+     */
+    private void ensureDiscoverable() {
+        if (mBleAdapter.getScanMode() !=
+                BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE) {
+            Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+            discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
+            startActivity(discoverableIntent);
+        }
+    }
+
+    private void connect(TextView view, int position) {
+        mToastUtil.toaster(position + "");
+        // Cancel discovery because it's costly and we're about to connect
+        mBleAdapter.cancelDiscovery();
+
+        // Get the device MAC address, which is the last 17 chars in the View
+        String info = view.getText().toString();
+        String address = info.substring(info.length() - 17);
+
+        // Create the result Intent and include the MAC address
+        Intent intent = new Intent();
+        //address is the Mac address which you want to connect
+        intent.putExtra(Constants.EXTRA_DEVICE_ADDRESS, address);
+
+        // Set result and finish this Activity
+        FindDeviceActivity.this.setResult(Activity.RESULT_OK, intent);
+        finish();
     }
 
     @Override
@@ -162,7 +206,7 @@ public class FindDeviceActivity extends BaseActivity {
      * 搜索
      */
     private void doDiscovery() {
-        mTitle.setTitle("扫描设备中");
+        mTitle.getTvTitle().setText("扫描设备中");
         mNewDevices.clear();
         if (mBleAdapter.isDiscovering()) {
             mBleAdapter.cancelDiscovery();
@@ -177,6 +221,7 @@ public class FindDeviceActivity extends BaseActivity {
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            mTitle.getTvTitle().setText("蓝牙列表");
             String action = intent.getAction();
 
             // When discovery finds a device

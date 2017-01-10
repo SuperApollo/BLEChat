@@ -11,8 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         mytitle:mytitle="发现蓝牙"
+        mytitle:rightimg="@mipmap/icon_title_more"
         mytitle:showback="true"
-        mytitle:showleftlay="true" />
+        mytitle:showleftlay="true"
+        mytitle:showrightlay="true" />
 
     <LinearLayout
         android:layout_width="match_parent"
