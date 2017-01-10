@@ -25,6 +25,15 @@ public class GreenDaoGenerate {
         contact.addStringProperty("phoe");//电话
         contact.addStringProperty("ble");//蓝牙mac
 
+        //聊天消息
+        Entity chatBean = schema.addEntity("ChatBean");
+        chatBean.addStringProperty("mac").notNull().primaryKey();//mac地址，主键
+        chatBean.addStringProperty("time");//时间
+        chatBean.addStringProperty("name");//姓名
+        chatBean.addStringProperty("sex");//性别
+        chatBean.addStringProperty("head");//头像
+        chatBean.addStringProperty("content");//聊天内容
+        chatBean.addBooleanProperty("from");//true表示收到的消息
 
 
     }
