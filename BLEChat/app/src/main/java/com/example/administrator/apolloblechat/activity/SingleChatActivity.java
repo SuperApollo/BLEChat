@@ -215,7 +215,7 @@ public class SingleChatActivity extends BaseActivity {
     }
 
     private void setStatus(int ok, String Title, String subTitle) {
-        chat_title.setTitle(Title);
+        chat_title.getTvTitle().setText(Title);
     }
 
     /**
