@@ -174,7 +174,6 @@ public class FindDeviceActivity extends BaseActivity {
     }
 
     private void connect(TextView view, int position) {
-        mToastUtil.toaster(position + "");
         // Cancel discovery because it's costly and we're about to connect
         mBleAdapter.cancelDiscovery();
 

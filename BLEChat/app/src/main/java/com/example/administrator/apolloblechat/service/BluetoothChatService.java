@@ -60,13 +60,13 @@ public class BluetoothChatService {
     private AcceptThread mInsecureAcceptThread;
     private ConnectThread mConnectThread;
     private ConnectedThread mConnectedThread;
-    private int mState;
+    private int mState;//蓝牙状态
 
     // Constants that indicate the current connection state
-    public static final int STATE_NONE = 0;       // we're doing nothing
-    public static final int STATE_LISTEN = 1;     // now listening for incoming connections
-    public static final int STATE_CONNECTING = 2; // now initiating an outgoing connection
-    public static final int STATE_CONNECTED = 3;  // now connected to a remote device
+    public static final int STATE_NONE = 0;       // 无操作
+    public static final int STATE_LISTEN = 1;     // 等待蓝牙接入
+    public static final int STATE_CONNECTING = 2; // 蓝牙正在接入
+    public static final int STATE_CONNECTED = 3;  // 蓝牙已连接
 
     /**
      * Constructor. Prepares a new BluetoothChat session.
