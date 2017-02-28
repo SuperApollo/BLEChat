@@ -10,7 +10,9 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.administrator.apolloblechat.R;
+import com.example.administrator.apolloblechat.activity.ShowWebActivity;
 import com.example.administrator.apolloblechat.utils.FragmentUtils;
+import com.example.administrator.apolloblechat.utils.IntentUtils;
 import com.example.administrator.apolloblechat.widgets.MyTittleBar;
 import com.example.administrator.apolloblechat.zxing.activity.CaptureActivity;
 import com.example.administrator.apolloblechat.zxing.encoding.EncodingHandler;
@@ -65,6 +67,9 @@ public class ScannerFragment extends BaseFragment {
             Bundle bundle = data.getExtras();
             String scanResult = bundle.getString("result");
             mToastUtil.toaster(scanResult);
+            // TODO: 2017/2/28 进webview
+            IntentUtils.sendIntent(getActivity(), ShowWebActivity.class, bundle);
+
         }
     }
 
