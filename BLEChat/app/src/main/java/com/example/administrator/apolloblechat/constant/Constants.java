@@ -20,7 +20,7 @@ import com.example.administrator.apolloblechat.service.BluetoothChatService;
 
 /**
  * Defines several constants used between {@link BluetoothChatService} and the UI.
- *
+ * <p>
  * 常量接口
  */
 public interface Constants {

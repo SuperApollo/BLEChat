@@ -9,6 +9,7 @@ import com.example.administrator.apolloblechat.utils.CrashHandler;
 import com.example.administrator.apolloblechat.utils.ResUtils;
 import com.example.administrator.greendao.dao.DaoMaster;
 import com.example.administrator.greendao.dao.DaoSession;
+import com.squareup.leakcanary.LeakCanary;
 
 /**
  * Created by Administrator on 2016/8/24.
@@ -34,7 +35,8 @@ public class BaseApplication extends Application {
         //初始化错误日志记录
         CrashHandler crashHandler = CrashHandler.getInstance();
         crashHandler.init(getApplicationContext());
-
+        //内存泄漏检测工具初始化
+        LeakCanary.install(this);
     }
 
     private void initDao() {
