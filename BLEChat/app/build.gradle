@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 22
+    compileSdkVersion 25
     buildToolsVersion "22.0.1"
 
     defaultConfig {
         applicationId "com.example.administrator.apolloblechat"
         minSdkVersion 15
-        targetSdkVersion 22
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
     }
@@ -26,11 +26,12 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:22.1.1'
     compile files('libs/pinyin4j-2.5.0.jar')
     compile 'com.zcw:togglebutton-library:1.0.0'
     compile 'org.greenrobot:greendao:2.2.0'
     compile 'com.google.zxing:core:3.2.1'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
+    compile 'com.android.support:appcompat-v7:22.1.0'
+    compile 'com.android.support:design:25.1.0'
 }
 
