@@ -84,6 +84,7 @@ public class MyPopUtil {
      */
     public void showAtLoacation(View parent, int gravity, int x, int y) {
         if (mMyPopupWindow != null) {
+            this.mContext = parent.getContext();
             backgroundAlpha(0.5f);
             mMyPopupWindow.showAtLocation(parent, gravity, x, y);
         }
@@ -98,6 +99,7 @@ public class MyPopUtil {
      */
     public void showAsDropDown(View anchor, int x, int y) {
         if (mMyPopupWindow != null) {
+            this.mContext = anchor.getContext();
             backgroundAlpha(0.5f);
             mMyPopupWindow.showAsDropDown(anchor, x, y);
         }
